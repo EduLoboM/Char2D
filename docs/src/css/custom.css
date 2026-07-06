@@ -19,6 +19,13 @@
   /* Smooth animations */
   --transition-speed: 0.3s;
   --transition-bezier: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Local Search Customizations */
+  --search-local-highlight-color: var(--ifm-color-primary);
+  --search-local-modal-background: rgba(255, 255, 255, 0.95);
+  --search-local-modal-shadow: 0 12px 30px rgba(41, 141, 62, 0.15);
+  --search-local-hit-background: rgba(0, 0, 0, 0.02);
+  --search-local-hit-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 [data-theme='dark'] {
@@ -36,6 +43,13 @@
   --ifm-navbar-background-color: rgba(8, 11, 16, 0.85);
   --ifm-card-background-color: #0e121a;
   --docusaurus-highlighted-code-line-bg: rgba(62, 204, 95, 0.15);
+
+  /* Local Search Customizations - Dark Mode */
+  --search-local-highlight-color: var(--ifm-color-primary);
+  --search-local-modal-background: rgba(14, 18, 26, 0.95);
+  --search-local-modal-shadow: 0 12px 30px rgba(62, 204, 95, 0.15);
+  --search-local-hit-background: rgba(255, 255, 255, 0.03);
+  --search-local-hit-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Custom Scrollbar for modern look */
@@ -461,4 +475,63 @@ article tr:hover td .icon-inline {
 
 [data-theme='light'] .glass-card h4 {
   color: #1a202c !important;
+}
+
+/* Custom premium styling for the search input in the navbar */
+.navbar__search-input {
+  border-radius: 20px !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: var(--ifm-font-color-base) !important;
+  min-width: 20rem !important;
+  transition: all var(--transition-speed) var(--transition-bezier) !important;
+}
+
+[data-theme='light'] .navbar__search-input {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+
+.navbar__search-input:focus {
+  border-color: var(--ifm-color-primary) !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  outline: none !important;
+  box-shadow: none !important;
+  min-width: 20rem !important;
+}
+
+[data-theme='light'] .navbar__search-input:focus {
+  background-color: rgba(255, 255, 255, 1) !important;
+  box-shadow: none !important;
+}
+
+/* Styling for the Ctrl+K shortcut keys in the search input */
+kbd[class*='searchHint'] {
+  color: var(--ifm-color-emphasis-700) !important;
+  background-color: var(--ifm-color-emphasis-100) !important;
+  border: 1px solid var(--ifm-color-emphasis-300) !important;
+  box-shadow: none !important;
+  font-family: var(--ifm-font-family-monospace) !important;
+  font-size: 0.75rem !important;
+  border-radius: 4px !important;
+  padding: 0.1rem 0.35rem !important;
+  transition: all var(--transition-speed) var(--transition-bezier) !important;
+}
+
+[data-theme='dark'] kbd[class*='searchHint'] {
+  color: var(--ifm-color-emphasis-400) !important;
+  background-color: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Green styling when the search input is focused (clicked) */
+.navbar__search-input:focus ~ [class*='searchHintContainer'] kbd[class*='searchHint'] {
+  color: var(--ifm-color-primary) !important;
+  background-color: rgba(62, 204, 95, 0.08) !important;
+  border: 1px solid rgba(62, 204, 95, 0.25) !important;
+}
+
+[data-theme='light'] .navbar__search-input:focus ~ [class*='searchHintContainer'] kbd[class*='searchHint'] {
+  background-color: rgba(41, 141, 62, 0.06) !important;
+  border: 1px solid rgba(41, 141, 62, 0.2) !important;
 }

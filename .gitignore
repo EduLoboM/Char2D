@@ -19,3 +19,8 @@ docs/.cache-loader/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Beef Lang Build and Workspace Files
+build/
+recovery/
+BeefUser.toml

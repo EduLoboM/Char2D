@@ -2,14 +2,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined');
 
 :root {
-  /* Green primary palette matching the logo */
-  --ifm-color-primary: #298d3e;
-  --ifm-color-primary-dark: #257f38;
-  --ifm-color-primary-darker: #237834;
-  --ifm-color-primary-darkest: #1d632b;
-  --ifm-color-primary-light: #30a549;
-  --ifm-color-primary-lighter: #35b04e;
-  --ifm-color-primary-lightest: #54c96b;
+  /* Knight Blue primary palette for light mode */
+  --ifm-color-primary: #0969da;
+  --ifm-color-primary-rgb: 9, 105, 218;
+  --ifm-color-primary-dark: #085dc2;
+  --ifm-color-primary-darker: #0751a9;
+  --ifm-color-primary-darkest: #053a78;
+  --ifm-color-primary-light: #0a75f2;
+  --ifm-color-primary-lighter: #2082f6;
+  --ifm-color-primary-lightest: #519ef8;
 
   --ifm-font-family-base: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   --ifm-font-family-monospace: 'JetBrains Mono', 'Fira Code', SFMono-Regular, Consolas, Menlo, monospace;
@@ -23,31 +24,32 @@
   /* Local Search Customizations */
   --search-local-highlight-color: var(--ifm-color-primary);
   --search-local-modal-background: rgba(255, 255, 255, 0.95);
-  --search-local-modal-shadow: 0 12px 30px rgba(41, 141, 62, 0.15);
+  --search-local-modal-shadow: 0 12px 30px rgba(var(--ifm-color-primary-rgb), 0.15);
   --search-local-hit-background: rgba(0, 0, 0, 0.02);
   --search-local-hit-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 [data-theme='dark'] {
-  --ifm-color-primary: #3ecc5f;
-  --ifm-color-primary-dark: #2cbd4c;
-  --ifm-color-primary-darker: #26b345;
-  --ifm-color-primary-darkest: #1f9339;
-  --ifm-color-primary-light: #5ad378;
-  --ifm-color-primary-lighter: #69d784;
-  --ifm-color-primary-lightest: #95e4a8;
+  --ifm-color-primary: #f97020;
+  --ifm-color-primary-rgb: 249, 112, 32;
+  --ifm-color-primary-dark: #f86007;
+  --ifm-color-primary-darker: #e05606;
+  --ifm-color-primary-darkest: #ae4305;
+  --ifm-color-primary-light: #fa8039;
+  --ifm-color-primary-lighter: #fa9052;
+  --ifm-color-primary-lightest: #fcb083;
 
   /* Dark Slate / Cyber Theme Backgrounds */
   --ifm-background-color: #080b10;
   --ifm-background-surface-color: #0e121a;
   --ifm-navbar-background-color: rgba(8, 11, 16, 0.85);
   --ifm-card-background-color: #0e121a;
-  --docusaurus-highlighted-code-line-bg: rgba(62, 204, 95, 0.15);
+  --docusaurus-highlighted-code-line-bg: rgba(var(--ifm-color-primary-rgb), 0.15);
 
   /* Local Search Customizations - Dark Mode */
   --search-local-highlight-color: var(--ifm-color-primary);
   --search-local-modal-background: rgba(14, 18, 26, 0.95);
-  --search-local-modal-shadow: 0 12px 30px rgba(62, 204, 95, 0.15);
+  --search-local-modal-shadow: 0 12px 30px rgba(var(--ifm-color-primary-rgb), 0.15);
   --search-local-hit-background: rgba(255, 255, 255, 0.03);
   --search-local-hit-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
@@ -108,8 +110,8 @@
 
 [data-theme='dark'] .glass-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(62, 204, 95, 0.4);
-  box-shadow: 0 12px 30px rgba(62, 204, 95, 0.08), 0 0 1px rgba(62, 204, 95, 0.3);
+  border-color: rgba(var(--ifm-color-primary-rgb), 0.4);
+  box-shadow: 0 12px 30px rgba(var(--ifm-color-primary-rgb), 0.08), 0 0 1px rgba(var(--ifm-color-primary-rgb), 0.3);
 }
 
 [data-theme='light'] .glass-card {
@@ -120,7 +122,7 @@
 [data-theme='light'] .glass-card:hover {
   transform: translateY(-6px);
   border-color: var(--ifm-color-primary-light);
-  box-shadow: 0 12px 30px rgba(41, 141, 62, 0.08);
+  box-shadow: 0 12px 30px rgba(var(--ifm-color-primary-rgb), 0.08);
 }
 
 .glass-card .material-icons-outlined,
@@ -229,7 +231,7 @@
 /* Custom Premium Footer Styling */
 .footer {
   background: linear-gradient(180deg, #0e121a 0%, #080b10 100%) !important;
-  border-top: 1px solid rgba(62, 204, 95, 0.15);
+  border-top: 1px solid rgba(var(--ifm-color-primary-rgb), 0.15);
   padding: 4rem 2rem 2rem;
   transition: border-color var(--transition-speed) var(--transition-bezier);
   position: relative;
@@ -276,7 +278,7 @@
 .footer__link-item:hover {
   color: var(--ifm-color-primary-light) !important;
   transform: translateX(4px);
-  text-shadow: 0 0 8px rgba(62, 204, 95, 0.3);
+  text-shadow: 0 0 8px rgba(var(--ifm-color-primary-rgb), 0.3);
 }
 
 /* Add custom arrow icons next to links on hover */
@@ -305,7 +307,7 @@
 
 [data-theme='light'] .footer {
   background: linear-gradient(180deg, #f7fafc 0%, #edf2f7 100%) !important;
-  border-top: 1px solid rgba(41, 141, 62, 0.15);
+  border-top: 1px solid rgba(var(--ifm-color-primary-rgb), 0.15);
 }
 
 [data-theme='light'] .footer__link-item {
@@ -376,11 +378,11 @@ article tr {
 }
 
 article tr:hover {
-  background-color: rgba(62, 204, 95, 0.03) !important;
+  background-color: rgba(var(--ifm-color-primary-rgb), 0.03) !important;
 }
 
 [data-theme='light'] article tr:hover {
-  background-color: rgba(41, 141, 62, 0.03) !important;
+  background-color: rgba(var(--ifm-color-primary-rgb), 0.03) !important;
 }
 
 article table code {
@@ -547,13 +549,13 @@ kbd[class*='searchHint'] {
 /* Green styling when the search input is focused (clicked) */
 .navbar__search-input:focus ~ [class*='searchHintContainer'] kbd[class*='searchHint'] {
   color: var(--ifm-color-primary) !important;
-  background-color: rgba(62, 204, 95, 0.08) !important;
-  border: 1px solid rgba(62, 204, 95, 0.25) !important;
+  background-color: rgba(var(--ifm-color-primary-rgb), 0.08) !important;
+  border: 1px solid rgba(var(--ifm-color-primary-rgb), 0.25) !important;
 }
 
 [data-theme='light'] .navbar__search-input:focus ~ [class*='searchHintContainer'] kbd[class*='searchHint'] {
-  background-color: rgba(41, 141, 62, 0.06) !important;
-  border: 1px solid rgba(41, 141, 62, 0.2) !important;
+  background-color: rgba(var(--ifm-color-primary-rgb), 0.06) !important;
+  border: 1px solid rgba(var(--ifm-color-primary-rgb), 0.2) !important;
 }
 
 /* Synergy Hover System - Reactive Table Colors */

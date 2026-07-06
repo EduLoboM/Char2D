@@ -1,5 +1,5 @@
 .heroBanner {
-  padding: 8rem 0 6rem 0;
+  padding: 3rem 0 5rem 0;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -19,8 +19,8 @@
   right: 0;
   bottom: 0;
   background-image:
-    linear-gradient(rgba(62, 204, 95, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(62, 204, 95, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(var(--ifm-color-primary-rgb), 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--ifm-color-primary-rgb), 0.05) 1px, transparent 1px);
   background-size: 40px 40px;
   background-position: center center;
   mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
@@ -35,7 +35,7 @@
   transform: translate(-50%, -50%);
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(62, 204, 95, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(var(--ifm-color-primary-rgb), 0.08) 0%, transparent 70%);
   pointer-events: none;
   filter: blur(40px);
 }
@@ -60,15 +60,14 @@
 }
 
 .logoContainer {
-  margin-bottom: 1.5rem;
   display: flex;
   justify-content: center;
 }
 
 .heroLogo {
-  width: 90px;
-  height: 90px;
-  filter: drop-shadow(0 4px 20px rgba(62, 204, 95, 0.3));
+  width: 450px;
+  height: 450px;
+  filter: drop-shadow(0 6px 30px rgba(var(--ifm-color-primary-rgb), 0.25));
   transition: transform 0.3s ease;
 }
 
@@ -106,13 +105,13 @@
   font-weight: 700;
   padding: 0.8rem 2rem;
   border-radius: 8px;
-  box-shadow: 0 8px 20px rgba(62, 204, 95, 0.25);
+  box-shadow: 0 8px 20px rgba(var(--ifm-color-primary-rgb), 0.25);
   transition: all var(--transition-speed) var(--transition-bezier);
 }
 
 .primaryButton:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 24px rgba(62, 204, 95, 0.4);
+  box-shadow: 0 12px 24px rgba(var(--ifm-color-primary-rgb), 0.4);
   filter: brightness(1.1);
   text-decoration: none;
 }
@@ -140,9 +139,20 @@
   text-decoration: none;
 }
 
+.primaryButton span,
+.secondaryButton span {
+  display: inline-block;
+  transition: transform var(--transition-speed) var(--transition-bezier);
+}
+
+.primaryButton:hover span,
+.secondaryButton:hover span {
+  transform: scale(1.15);
+}
+
 @media screen and (max-width: 996px) {
   .heroBanner {
-    padding: 5rem 1.5rem;
+    padding: 2.5rem 1.5rem;
   }
 
   .heroTitle {

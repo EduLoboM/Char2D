@@ -3,6 +3,7 @@ docs/node_modules/
 
 # Documentation production build
 docs/build/
+docs/static/img/sheets/
 
 # Generated files by Docusaurus
 docs/.docusaurus/

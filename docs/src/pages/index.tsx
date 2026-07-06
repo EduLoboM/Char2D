@@ -15,7 +15,7 @@ function HomepageHeader() {
       <div className={styles.heroGlow} />
       <div className={styles.heroContent}>
         <div className={styles.logoContainer}>
-          <img src="img/logo.svg" alt="Char2D Logo" className={styles.heroLogo} />
+          <img src="img/logo.png" alt="Char2D Logo" className={styles.heroLogo} />
         </div>
         <Heading as="h1" className={styles.heroTitle}>
           {siteConfig.title}

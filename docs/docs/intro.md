@@ -1,5 +1,7 @@
 # Char2D Project Docs
 
+![Char2D Banner](/img/intro.png)
+
 This repository contains the documentation, technical specs, design assets, and development logs for the **Char2D** game engine and the game powered by it.
 
 Use the sidebar or choose a section below to get started:
@@ -54,4 +56,4 @@ Use the sidebar or choose a section below to get started:
 
 ## Development Notes
 
-The project codebase is hosted on [GitHub](https://github.com/EduLoboM/Char2D). Follow the instructions there for setting up the local runtime environment and integrating custom assets.
+The project codebase is hosted on **[GitHub](https://github.com/EduLoboM/Char2D)**. Follow the instructions there for setting up the local runtime environment and integrating custom assets. If you could also star the repo, that would be of immense help for us!

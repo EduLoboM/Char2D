@@ -1,11 +1,129 @@
 .features {
   display: flex;
   align-items: center;
-  padding: 2rem 0;
+  padding: 5rem 0;
+  width: 100%;
+  background: var(--ifm-background-color);
+}
+
+.featureCol {
+  margin-bottom: 2rem;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: rgba(62, 204, 95, 0.1);
+  color: var(--ifm-color-primary);
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+/* Hover styles matching glass card */
+.featureCol :global(.glass-card):hover .iconWrapper {
+  background: var(--ifm-color-primary);
+  color: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(62, 204, 95, 0.4);
+}
+
+.featureTitle {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+
+.featureInfo {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.linkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex-grow: 1;
+}
+
+.linkList li {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.subLink {
+  color: var(--ifm-color-emphasis-700);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.2s ease;
   width: 100%;
 }
 
-.featureSvg {
-  height: 200px;
-  width: 200px;
+.subLink:hover {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+  transform: translateX(4px);
 }
+
+.subLinkIcon {
+  font-size: 1.1rem;
+  margin-right: 0.5rem;
+  color: var(--ifm-color-primary);
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.subLink:hover .subLinkIcon {
+  opacity: 1;
+}
+
+.featureFooter {
+  margin-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 1rem;
+}
+
+[data-theme='light'] .featureFooter {
+  border-top-color: rgba(0, 0, 0, 0.06);
+}
+
+.featureLink {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--ifm-color-primary) !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  text-decoration: none;
+}
+
+.featureLink:hover {
+  text-decoration: none;
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+
+.featureLink:hover .arrow {
+  transform: translateX(4px);
+}
+
+@media screen and (max-width: 996px) {
+  .features {
+    padding: 3rem 0;
+  }
+}
+

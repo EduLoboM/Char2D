@@ -1,56 +1,85 @@
 import type {ReactNode} from 'react';
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
+import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
+
+type FeatureLink = {
+  label: string;
+  url: string;
+};
 
 type FeatureItem = {
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
-  description: ReactNode;
+  icon: string;
+  link: string;
+  linkLabel: string;
+  links: FeatureLink[];
 };
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
-    description: (
-      <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
-      </>
-    ),
+    title: 'The Game Engine',
+    link: '/docs/engine/',
+    linkLabel: 'Explore Engine Architecture',
+    icon: 'terminal',
+    links: [
+      { label: 'System Architecture', url: '/docs/engine/#system-architecture-tree' },
+      { label: 'Core Loop & Systems', url: '/docs/engine/#system-architecture-tree' },
+    ],
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
-    description: (
-      <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
-      </>
-    ),
+    title: 'Combat & Mechanics',
+    link: '/docs/game/',
+    linkLabel: 'Read Combat Mechanics',
+    icon: 'sports_esports',
+    links: [
+      { label: 'Dungeon Phases', url: '/docs/game/#2-dungeon-phase' },
+      { label: 'Combat & Bullet Dodging', url: '/docs/game/#3-combat-phase' },
+      { label: 'Status Synergies', url: '/docs/game/#status-synergies' },
+    ],
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
-    description: (
-      <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
-      </>
-    ),
+    title: 'Artifacts & Assets',
+    link: '/docs/artifacts/',
+    linkLabel: 'View Assets & GDD',
+    icon: 'folder_open',
+    links: [
+      { label: 'Asset Registry', url: '/docs/artifacts/#initial-project-assets' },
+      { label: 'Integration Guidelines', url: '/docs/artifacts/#asset-integration-guidelines' },
+    ],
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+function Feature({title, icon, link, linkLabel, links}: FeatureItem) {
   return (
-    <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
-      <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
+    <div className={clsx('col col--4', styles.featureCol)}>
+      <div className="glass-card">
+        <div className={styles.iconWrapper}>
+          <span className="material-symbols-outlined" style={{ fontSize: '28px' }}>
+            {icon}
+          </span>
+        </div>
+        <div className={styles.featureInfo}>
+          <Heading as="h3" className={styles.featureTitle}>{title}</Heading>
+          <ul className={styles.linkList}>
+            {links.map((item, idx) => (
+              <li key={idx}>
+                <Link className={styles.subLink} to={item.url}>
+                  <span className={clsx('material-symbols-outlined', styles.subLinkIcon)}>
+                    chevron_right
+                  </span>
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className={styles.featureFooter}>
+          <Link className={styles.featureLink} to={link}>
+            {linkLabel} <span className={styles.arrow}>→</span>
+          </Link>
+        </div>
       </div>
     </div>
   );
@@ -69,3 +98,4 @@ export default function HomepageFeatures(): ReactNode {
     </section>
   );
 }
+

@@ -4,7 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Char2D',
-  tagline: 'Documentation for the game engine and game Char2D',
+  tagline: 'A 2D game engine built in Beef Lang for grid-based RPGs, featuring hybrid turn-based combat and active bullet dodging.',
   favicon: 'img/favicon.ico',
   url: 'https://edulobom.github.io',
   baseUrl: '/Char2D/',
@@ -13,6 +13,11 @@ const config: Config = {
 
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
+
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
 
   i18n: {
     defaultLocale: 'en',

@@ -1,31 +1,197 @@
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=JetBrains+Mono:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined');
 
-/* You can override the default Infima variables here. */
 :root {
-  /* Indigo primary color */
-  --ifm-color-primary: #3f51b5;
-  --ifm-color-primary-dark: #3849a3;
-  --ifm-color-primary-darker: #35459a;
-  --ifm-color-primary-darkest: #2c397f;
-  --ifm-color-primary-light: #5263bd;
-  --ifm-color-primary-lighter: #5b6bc0;
-  --ifm-color-primary-lightest: #7885cc;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  /* Green primary palette matching the logo */
+  --ifm-color-primary: #298d3e;
+  --ifm-color-primary-dark: #257f38;
+  --ifm-color-primary-darker: #237834;
+  --ifm-color-primary-darkest: #1d632b;
+  --ifm-color-primary-light: #30a549;
+  --ifm-color-primary-lighter: #35b04e;
+  --ifm-color-primary-lightest: #54c96b;
+
+  --ifm-font-family-base: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --ifm-font-family-monospace: 'JetBrains Mono', 'Fira Code', SFMono-Regular, Consolas, Menlo, monospace;
+  --ifm-code-font-size: 90%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.05);
+
+  /* Smooth animations */
+  --transition-speed: 0.3s;
+  --transition-bezier: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #7986cb;
-  --ifm-color-primary-dark: #6473c3;
-  --ifm-color-primary-darker: #596abf;
-  --ifm-color-primary-darkest: #3e51b1;
-  --ifm-color-primary-light: #8e99d3;
-  --ifm-color-primary-lighter: #99a3d7;
-  --ifm-color-primary-lightest: #b7bfe3;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  --ifm-color-primary: #3ecc5f;
+  --ifm-color-primary-dark: #2cbd4c;
+  --ifm-color-primary-darker: #26b345;
+  --ifm-color-primary-darkest: #1f9339;
+  --ifm-color-primary-light: #5ad378;
+  --ifm-color-primary-lighter: #69d784;
+  --ifm-color-primary-lightest: #95e4a8;
+
+  /* Dark Slate / Cyber Theme Backgrounds */
+  --ifm-background-color: #080b10;
+  --ifm-background-surface-color: #0e121a;
+  --ifm-navbar-background-color: rgba(8, 11, 16, 0.85);
+  --ifm-card-background-color: #0e121a;
+  --docusaurus-highlighted-code-line-bg: rgba(62, 204, 95, 0.15);
+}
+
+/* Custom Scrollbar for modern look */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--ifm-background-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--ifm-background-surface-color);
+  border: 2px solid var(--ifm-background-color);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ifm-color-primary-darker);
+}
+
+/* Glassmorphism Navbar styling */
+.navbar {
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: background-color 0.3s;
+}
+
+[data-theme='light'] .navbar {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+/* Global transitions for items */
+.menu__link,
+.navbar__item,
+.button {
+  transition: all var(--transition-speed) var(--transition-bezier);
+}
+
+/* Premium Card Styles */
+.glass-card {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-speed) var(--transition-bezier);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme='dark'] .glass-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(62, 204, 95, 0.4);
+  box-shadow: 0 12px 30px rgba(62, 204, 95, 0.08), 0 0 1px rgba(62, 204, 95, 0.3);
+}
+
+[data-theme='light'] .glass-card {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme='light'] .glass-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--ifm-color-primary-light);
+  box-shadow: 0 12px 30px rgba(41, 141, 62, 0.08);
+}
+
+/* Grid Layout for Docs Dashboard */
+.doc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+/* Synergy Icons for Mechanics Page */
+.synergy-icon {
+  font-size: 1.25rem !important;
+  vertical-align: text-bottom;
+  margin-right: 0.35rem;
+}
+
+.synergy-bleed {
+  color: #ff4d4d;
+  /* Red */
+}
+
+.synergy-burn {
+  color: #f57c00;
+  /* Orange */
+}
+
+.synergy-charge {
+  color: #b392ac;
+  /* Purple (matching poise's original hue or custom light purple) */
+}
+
+/* Let's make sure charge is purple as requested */
+.synergy-charge {
+  color: #c084fc;
+  /* Bright Purple */
+}
+
+.synergy-sinking {
+  color: #3b82f6;
+  /* Blue */
+}
+
+.synergy-poise {
+  color: #adb5bd;
+  /* White/Grey */
+}
+
+.synergy-rupture {
+  color: #3ecc5f;
+  /* Green */
+}
+
+.synergy-tremor {
+  color: #ffd43b;
+  /* Yellow */
+}
+
+/* Callout custom additions */
+.theme-admonition {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Material Symbols Outlined helpers */
+.material-icons-outlined,
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1.5rem;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  vertical-align: middle;
+}
+
+.icon-inline {
+  font-size: 1.25rem;
+  margin-right: 0.35rem;
+  vertical-align: text-bottom;
 }

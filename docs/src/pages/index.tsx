@@ -1,4 +1,4 @@
-import type {ReactNode} from 'react';
+import type { ReactNode } from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -9,19 +9,34 @@ import Heading from '@theme/Heading';
 import styles from './index.module.css';
 
 function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <Heading as="h1" className="hero__title">
+    <header className={styles.heroBanner}>
+      <div className={styles.heroGlow} />
+      <div className={styles.heroContent}>
+        <div className={styles.logoContainer}>
+          <img src="img/logo.svg" alt="Char2D Logo" className={styles.heroLogo} />
+        </div>
+        <Heading as="h1" className={styles.heroTitle}>
           {siteConfig.title}
         </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
+        <p className={styles.heroSubtitle}>{siteConfig.tagline}</p>
         <div className={styles.buttons}>
           <Link
-            className="button button--secondary button--lg"
+            className={styles.primaryButton}
             to="/docs/intro">
-            Read the Documentation
+            <span className="material-symbols-outlined icon-inline" style={{ marginRight: '8px', fontSize: '1.25rem' }}>
+              menu_book
+            </span>
+            Read the Docs
+          </Link>
+          <Link
+            className={styles.secondaryButton}
+            to="https://github.com/EduLoboM/Char2D">
+            <span className="material-symbols-outlined icon-inline" style={{ marginRight: '8px', fontSize: '1.25rem' }}>
+              code
+            </span>
+            GitHub
           </Link>
         </div>
       </div>
@@ -29,12 +44,13 @@ function HomepageHeader() {
   );
 }
 
+
 export default function Home(): ReactNode {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
       title={`${siteConfig.title} Engine`}
-      description="Documentation for the game engine and game Char2D">
+      description="A 2D game engine built in Beef Lang for grid-based RPGs, featuring hybrid turn-based combat and active bullet dodging.">
       <HomepageHeader />
       <main>
         <HomepageFeatures />

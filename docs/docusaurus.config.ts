@@ -1,5 +1,5 @@
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
+import { themes as prismThemes } from 'prism-react-renderer';
+import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
@@ -68,24 +68,53 @@ const config: Config = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: 'Documentation',
           items: [
             {
               label: 'About Char2D',
-              to: '/docs/intro',
+              href: 'https://edulobom.github.io/Char2D/docs/intro',
             },
             {
-              label: 'The Game Engine',
-              to: '/docs/engine/',
+              label: 'About Beef',
+              href: 'https://www.beeflang.org/',
+            },
+            {
+              label: 'About Docusaurus',
+              href: 'https://docusaurus.io/',
             },
           ],
         },
         {
-          title: 'More',
+          title: 'Community',
           items: [
             {
-              label: 'GitHub',
+              label: 'GitHub Repository',
               href: 'https://github.com/EduLoboM/Char2D',
+            },
+            {
+              label: 'Report an Issue',
+              href: 'https://github.com/EduLoboM/Char2D/issues',
+            },
+            {
+              label: 'Run Locally',
+              href: 'https://github.com/EduLoboM/Char2D/blob/main/README.md',
+            },
+          ],
+        },
+        {
+          title: 'Development',
+          items: [
+            {
+              label: 'Awesome Beef',
+              href: 'https://github.com/Jonathan-Racaud/awesome-beef',
+            },
+            {
+              label: 'Releases & Downloads',
+              href: 'https://github.com/EduLoboM/Char2D/releases',
+            },
+            {
+              label: 'EPL-2.0 License',
+              href: 'https://github.com/EduLoboM/Char2D/blob/main/LICENSE',
             },
           ],
         },

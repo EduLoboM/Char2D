@@ -195,3 +195,270 @@
   margin-right: 0.35rem;
   vertical-align: text-bottom;
 }
+
+/* Custom Premium Footer Styling */
+.footer {
+  background: linear-gradient(180deg, #0e121a 0%, #080b10 100%) !important;
+  border-top: 1px solid rgba(62, 204, 95, 0.15);
+  box-shadow: 0 -10px 40px rgba(8, 11, 16, 0.5);
+  padding: 4rem 2rem 2rem;
+  transition: border-color var(--transition-speed) var(--transition-bezier);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme='dark'] .footer {
+  background: linear-gradient(180deg, #0b0e14 0%, #04060a 100%) !important;
+}
+
+/* Subtle glowing accent line at the top */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--ifm-color-primary), transparent);
+  opacity: 0.7;
+}
+
+.footer__title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  color: var(--ifm-color-primary) !important;
+  transition: color var(--transition-speed);
+}
+
+.footer__link-item {
+  font-size: 0.95rem;
+  color: #a0aec0 !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all var(--transition-speed) var(--transition-bezier) !important;
+  position: relative;
+}
+
+.footer__link-item:hover {
+  color: var(--ifm-color-primary-light) !important;
+  transform: translateX(4px);
+  text-shadow: 0 0 8px rgba(62, 204, 95, 0.3);
+}
+
+/* Add custom arrow icons next to links on hover */
+.footer__link-item::before {
+  content: '→';
+  opacity: 0;
+  margin-left: -10px;
+  transition: all var(--transition-speed) var(--transition-bezier);
+  color: var(--ifm-color-primary-light);
+}
+
+.footer__link-item:hover::before {
+  opacity: 1;
+  margin-left: 0;
+  margin-right: 4px;
+}
+
+.footer__copyright {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.85rem;
+  color: #718096 !important;
+  letter-spacing: 0.02em;
+}
+
+[data-theme='light'] .footer {
+  background: linear-gradient(180deg, #f7fafc 0%, #edf2f7 100%) !important;
+  border-top: 1px solid rgba(41, 141, 62, 0.15);
+}
+
+[data-theme='light'] .footer__link-item {
+  color: #4a5568 !important;
+}
+
+[data-theme='light'] .footer__link-item:hover {
+  color: var(--ifm-color-primary) !important;
+}
+
+[data-theme='light'] .footer__copyright {
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  color: #718096 !important;
+}
+
+/* Minimalist & Premium Table Styles */
+article table {
+  width: 100%;
+  display: table; /* Override Docusaurus block display for desktop */
+  border-collapse: collapse;
+  margin: 2.5rem 0;
+  font-size: 0.9rem;
+  background-color: transparent;
+  border: none;
+}
+
+article th {
+  background-color: transparent !important;
+  border: none !important;
+  border-bottom: 2px solid var(--ifm-color-primary-light) !important;
+  color: var(--ifm-color-primary-light) !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  padding: 12px 16px !important;
+  text-align: left;
+}
+
+[data-theme='light'] article th {
+  border-bottom: 2px solid var(--ifm-color-primary) !important;
+  color: var(--ifm-color-primary) !important;
+}
+
+article td {
+  border: none !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  padding: 14px 16px !important;
+  color: #e2e8f0;
+  transition: all var(--transition-speed) var(--transition-bezier);
+  vertical-align: middle;
+}
+
+[data-theme='light'] article td {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
+  color: #2d3748;
+}
+
+article tr {
+  background-color: transparent !important;
+  border: none !important;
+  transition: all var(--transition-speed) var(--transition-bezier);
+}
+
+article tr:hover {
+  background-color: rgba(62, 204, 95, 0.03) !important;
+}
+
+[data-theme='light'] article tr:hover {
+  background-color: rgba(41, 141, 62, 0.03) !important;
+}
+
+article table code {
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  padding: 0.15rem 0.4rem;
+  font-size: 0.8rem;
+  color: var(--ifm-color-primary-light);
+  font-family: var(--ifm-font-family-monospace);
+  transition: all var(--transition-speed) var(--transition-bezier);
+}
+
+[data-theme='light'] article table code {
+  background-color: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  color: var(--ifm-color-primary-dark);
+}
+
+article td .icon-inline {
+  color: var(--ifm-color-primary-light);
+  opacity: 0.85;
+  transition: transform var(--transition-speed) var(--transition-bezier);
+}
+
+[data-theme='light'] article td .icon-inline {
+  color: var(--ifm-color-primary);
+}
+
+article tr:hover td .icon-inline {
+  transform: scale(1.1);
+}
+
+/* Beautiful custom status badges */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.status-badge::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+/* Completed Badge Styling */
+.status-badge.status-completed {
+  background-color: rgba(62, 204, 95, 0.1);
+  color: #3ecc5f;
+}
+.status-badge.status-completed::before {
+  background-color: #3ecc5f;
+  box-shadow: 0 0 6px #3ecc5f;
+}
+
+[data-theme='light'] .status-badge.status-completed {
+  background-color: rgba(41, 141, 62, 0.1);
+  color: #257f38;
+}
+[data-theme='light'] .status-badge.status-completed::before {
+  background-color: #257f38;
+}
+
+/* Planned Badge Styling */
+.status-badge.status-planned {
+  background-color: rgba(160, 174, 192, 0.1);
+  color: #a0aec0;
+}
+.status-badge.status-planned::before {
+  background-color: #a0aec0;
+}
+
+[data-theme='light'] .status-badge.status-planned {
+  background-color: rgba(74, 85, 104, 0.1);
+  color: #4a5568;
+}
+[data-theme='light'] .status-badge.status-planned::before {
+  background-color: #4a5568;
+}
+
+/* In Progress Badge Styling */
+.status-badge.status-progress {
+  background-color: rgba(62, 184, 255, 0.1);
+  color: #3eb8ff;
+}
+.status-badge.status-progress::before {
+  background-color: #3eb8ff;
+  box-shadow: 0 0 6px #3eb8ff;
+}
+
+[data-theme='light'] .status-badge.status-progress {
+  background-color: rgba(49, 130, 206, 0.1);
+  color: #2b6cb0;
+}
+[data-theme='light'] .status-badge.status-progress::before {
+  background-color: #2b6cb0;
+}
+
+/* Glass Card Headings Styling */
+.glass-card h4 {
+  color: #ffffff !important;
+}
+
+[data-theme='light'] .glass-card h4 {
+  color: #1a202c !important;
+}

@@ -21,8 +21,8 @@ The main gameplay block where players navigate a procedurally generated dungeon.
 #### Node Types
 <div className="doc-grid">
   <div className="glass-card" style={{ padding: '1.25rem' }}>
-    <div style={{ color: 'var(--ifm-color-primary)', marginBottom: '0.5rem', display: 'flex', alignItems: 'center' }}>
-      <span className="material-icons-outlined icon-inline">flash_on</span>
+    <div style={{ marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+      <span className="material-icons-outlined" style={{ color: 'var(--ifm-color-primary)', fontSize: '1.5rem' }}>flash_on</span>
       <h4 style={{ margin: 0 }}>Normal Combat</h4>
     </div>
     <p style={{ fontSize: '0.85rem', margin: 0, opacity: 0.8, lineHeight: '1.4' }}>
@@ -31,8 +31,8 @@ The main gameplay block where players navigate a procedurally generated dungeon.
   </div>
   
   <div className="glass-card" style={{ padding: '1.25rem' }}>
-    <div style={{ color: 'var(--ifm-color-primary)', marginBottom: '0.5rem', display: 'flex', alignItems: 'center' }}>
-      <span className="material-icons-outlined icon-inline">whatshot</span>
+    <div style={{ marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+      <span className="material-icons-outlined" style={{ color: 'var(--ifm-color-primary)', fontSize: '1.5rem' }}>whatshot</span>
       <h4 style={{ margin: 0 }}>Super Combat</h4>
     </div>
     <p style={{ fontSize: '0.85rem', margin: 0, opacity: 0.8, lineHeight: '1.4' }}>
@@ -41,8 +41,8 @@ The main gameplay block where players navigate a procedurally generated dungeon.
   </div>
   
   <div className="glass-card" style={{ padding: '1.25rem' }}>
-    <div style={{ color: 'var(--ifm-color-primary)', marginBottom: '0.5rem', display: 'flex', alignItems: 'center' }}>
-      <span className="material-icons-outlined icon-inline">redeem</span>
+    <div style={{ marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+      <span className="material-icons-outlined" style={{ color: 'var(--ifm-color-primary)', fontSize: '1.5rem' }}>redeem</span>
       <h4 style={{ margin: 0 }}>Treasure Node</h4>
     </div>
     <p style={{ fontSize: '0.85rem', margin: 0, opacity: 0.8, lineHeight: '1.4' }}>
@@ -51,8 +51,8 @@ The main gameplay block where players navigate a procedurally generated dungeon.
   </div>
   
   <div className="glass-card" style={{ padding: '1.25rem' }}>
-    <div style={{ color: 'var(--ifm-color-primary)', marginBottom: '0.5rem', display: 'flex', alignItems: 'center' }}>
-      <span className="material-icons-outlined icon-inline">storefront</span>
+    <div style={{ marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+      <span className="material-icons-outlined" style={{ color: 'var(--ifm-color-primary)', fontSize: '1.5rem' }}>storefront</span>
       <h4 style={{ margin: 0 }}>Utility Node</h4>
     </div>
     <p style={{ fontSize: '0.85rem', margin: 0, opacity: 0.8, lineHeight: '1.4' }}>
@@ -61,8 +61,8 @@ The main gameplay block where players navigate a procedurally generated dungeon.
   </div>
   
   <div className="glass-card" style={{ padding: '1.25rem' }}>
-    <div style={{ color: 'var(--ifm-color-primary)', marginBottom: '0.5rem', display: 'flex', alignItems: 'center' }}>
-      <span className="material-icons-outlined icon-inline">military_tech</span>
+    <div style={{ marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+      <span className="material-icons-outlined" style={{ color: 'var(--ifm-color-primary)', fontSize: '1.5rem' }}>military_tech</span>
       <h4 style={{ margin: 0 }}>Boss Node</h4>
     </div>
     <p style={{ fontSize: '0.85rem', margin: 0, opacity: 0.8, lineHeight: '1.4' }}>
@@ -71,8 +71,8 @@ The main gameplay block where players navigate a procedurally generated dungeon.
   </div>
   
   <div className="glass-card" style={{ padding: '1.25rem' }}>
-    <div style={{ color: 'var(--ifm-color-primary)', marginBottom: '0.5rem', display: 'flex', alignItems: 'center' }}>
-      <span className="material-icons-outlined icon-inline">explore</span>
+    <div style={{ marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+      <span className="material-icons-outlined" style={{ color: 'var(--ifm-color-primary)', fontSize: '1.5rem' }}>explore</span>
       <h4 style={{ margin: 0 }}>Event Node</h4>
     </div>
     <p style={{ fontSize: '0.85rem', margin: 0, opacity: 0.8, lineHeight: '1.4' }}>

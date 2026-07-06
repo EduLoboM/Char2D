@@ -55,13 +55,13 @@ function Feature({title, icon, link, linkLabel, links}: FeatureItem) {
   return (
     <div className={clsx('col col--4', styles.featureCol)}>
       <div className="glass-card">
-        <div className={styles.iconWrapper}>
-          <span className="material-symbols-outlined" style={{ fontSize: '28px' }}>
-            {icon}
-          </span>
-        </div>
         <div className={styles.featureInfo}>
-          <Heading as="h3" className={styles.featureTitle}>{title}</Heading>
+          <Heading as="h3" className={styles.featureTitle}>
+            <span className={clsx('material-symbols-outlined', styles.featureIcon)}>
+              {icon}
+            </span>
+            {title}
+          </Heading>
           <ul className={styles.linkList}>
             {links.map((item, idx) => (
               <li key={idx}>

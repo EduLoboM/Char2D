@@ -10,31 +10,27 @@
   margin-bottom: 2rem;
 }
 
-.iconWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 56px;
-  height: 56px;
-  border-radius: 12px;
-  background: rgba(62, 204, 95, 0.1);
+.featureIcon {
+  font-size: 1.75rem;
   color: var(--ifm-color-primary);
-  margin-bottom: 1.5rem;
-  transition: all 0.3s ease;
+  transition: transform var(--transition-speed) var(--transition-bezier);
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.6rem;
 }
 
 /* Hover styles matching glass card */
-.featureCol :global(.glass-card):hover .iconWrapper {
-  background: var(--ifm-color-primary);
-  color: #fff;
-  transform: scale(1.1);
-  box-shadow: 0 0 15px rgba(62, 204, 95, 0.4);
+.featureCol :global(.glass-card):hover .featureIcon {
+  transform: scale(1.15);
 }
 
 .featureTitle {
   font-size: 1.35rem;
   font-weight: 700;
   margin-bottom: 1.25rem;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.6rem !important;
 }
 
 .featureInfo {

@@ -32,16 +32,16 @@ graph LR
     Event --> Parser[Dialogue Tree Parser]
     Event --> State[State Persistence]
 
-    classDef renderStroke stroke:#3b82f6,stroke-width:2px;
-    classDef physStroke stroke:#ff4d4d,stroke-width:2px;
-    classDef inputStroke stroke:#c084fc,stroke-width:2px;
-    classDef audioStroke stroke:#ffd43b,stroke-width:2px;
-    classDef eventStroke stroke:#3ecc5f,stroke-width:2px;
+    classDef renderStroke stroke:#ff4d4d,stroke-width:2px;
+    classDef physStroke stroke:#ffd43b,stroke-width:2px;
+    classDef inputStroke stroke:#3ecc5f,stroke-width:2px;
+    classDef audioStroke stroke:#3b82f6,stroke-width:2px;
+    classDef eventStroke stroke:#c084fc,stroke-width:2px;
 
     class Render,Sprites,Tilemaps,Camera renderStroke;
     class Phys,Grid,Collisions physStroke;
     class Input,Bindings,Polling inputStroke;
     class Audio,SFX,BGM audioStroke;
     class Event,Parser,State eventStroke;
-    style Core stroke:#3ecc5f,stroke-width:3px;
+    style Core stroke:#adb5bd,stroke-width:3px;
 ```

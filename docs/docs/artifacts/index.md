@@ -8,12 +8,12 @@ Index of design sheets, spritesheets, audio files, and engine configs for the **
 
 | Asset Name | Type | Status | Workspace Directory | Notes |
 | :--- | :--- | :--- | :--- | :--- |
-| **Game Design Document (GDD)** | Documentation | <span className="badge badge--success">Completed</span> | `/docs/docs/game/` | Core loop, mechanics definitions, and status synergy systems. |
-| **Pixel Art Spritesheets** | Visual | <span className="badge badge--secondary">Planned</span> | `/static/img/sprites/` | 32x32 sprite designs for player and enemy entities. |
-| **Dungeon Soundtracks** | Audio | <span className="badge badge--secondary">Planned</span> | `/static/audio/bgm/` | Ambient loop files for stage exploration and combat states. |
-| **Bullet Wave Configs** | Configuration | <span className="badge badge--secondary">Planned</span> | `/src/config/waves.json` | JSON mapping active wave projectile patterns. |
-| **Engine Core Loop Schema** | Diagram | <span className="badge badge--secondary">Planned</span> | `/docs/docs/engine/` | Flowchart detailing engine lifecycle loops. |
-| **UI Mockups** | Design | <span className="badge badge--secondary">Planned</span> | `/static/img/ui/` | Interface layouts for combat options and menus. |
+| <span className="material-symbols-outlined icon-inline">description</span> **Game Design Document (GDD)** | Documentation | <span className="status-badge status-completed">Completed</span> | `/docs/docs/game/` | Core loop, mechanics definitions, and status synergy systems. |
+| <span className="material-symbols-outlined icon-inline">palette</span> **Pixel Art Spritesheets** | Visual | <span className="status-badge status-planned">Planned</span> | `/static/img/sprites/` | 32x32 sprite designs for player and enemy entities. |
+| <span className="material-symbols-outlined icon-inline">music_note</span> **Dungeon Soundtracks** | Audio | <span className="status-badge status-planned">Planned</span> | `/static/audio/bgm/` | Ambient loop files for stage exploration and combat states. |
+| <span className="material-symbols-outlined icon-inline">settings</span> **Bullet Wave Configs** | Configuration | <span className="status-badge status-planned">Planned</span> | `/src/config/waves.json` | JSON mapping active wave projectile patterns. |
+| <span className="material-symbols-outlined icon-inline">schema</span> **Engine Core Loop Schema** | Diagram | <span className="status-badge status-completed">Completed</span> | `/docs/docs/engine/` | Flowchart detailing engine lifecycle loops. |
+| <span className="material-symbols-outlined icon-inline">layers</span> **UI Mockups** | Design | <span className="status-badge status-planned">Planned</span> | `/static/img/ui/` | Interface layouts for combat options and menus. |
 
 ---
 

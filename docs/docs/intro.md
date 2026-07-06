@@ -10,30 +10,30 @@ Use the sidebar or choose a section below to get started:
 
 <div className="doc-grid">
   <a href="./engine/" className="glass-card" style={{ textDecoration: 'none', color: 'inherit' }}>
-    <div style={{ color: 'var(--ifm-color-primary)', marginBottom: '0.75rem' }}>
-      <span className="material-icons-outlined" style={{ fontSize: '2rem' }}>settings</span>
+    <div style={{ marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+      <span className="material-icons-outlined" style={{ color: 'var(--ifm-color-primary)', fontSize: '1.5rem' }}>settings</span>
+      <h3 style={{ margin: 0 }}>Game Engine</h3>
     </div>
-    <h3 style={{ margin: '0 0 0.5rem 0' }}>Game Engine</h3>
     <p style={{ fontSize: '0.85rem', margin: 0, opacity: 0.8, lineHeight: '1.5' }}>
       Technical breakdown of engine architecture: rendering pipeline, event loops, physics, and input polling.
     </p>
   </a>
   
   <a href="./game/" className="glass-card" style={{ textDecoration: 'none', color: 'inherit' }}>
-    <div style={{ color: 'var(--ifm-color-primary)', marginBottom: '0.75rem' }}>
-      <span className="material-icons-outlined" style={{ fontSize: '2rem' }}>sports_esports</span>
+    <div style={{ marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+      <span className="material-icons-outlined" style={{ color: 'var(--ifm-color-primary)', fontSize: '1.5rem' }}>sports_esports</span>
+      <h3 style={{ margin: 0 }}>Game & Design</h3>
     </div>
-    <h3 style={{ margin: '0 0 0.5rem 0' }}>The Game</h3>
     <p style={{ fontSize: '0.85rem', margin: 0, opacity: 0.8, lineHeight: '1.5' }}>
       Game design docs, dungeon phase structures, enemy types, and turn-based combat mechanics.
     </p>
   </a>
   
   <a href="./artifacts/" className="glass-card" style={{ textDecoration: 'none', color: 'inherit' }}>
-    <div style={{ color: 'var(--ifm-color-primary)', marginBottom: '0.75rem' }}>
-      <span className="material-icons-outlined" style={{ fontSize: '2rem' }}>folder_open</span>
+    <div style={{ marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+      <span className="material-icons-outlined" style={{ color: 'var(--ifm-color-primary)', fontSize: '1.5rem' }}>folder_open</span>
+      <h3 style={{ margin: 0 }}>Artifacts & Assets</h3>
     </div>
-    <h3 style={{ margin: '0 0 0.5rem 0' }}>Artifacts & Assets</h3>
     <p style={{ fontSize: '0.85rem', margin: 0, opacity: 0.8, lineHeight: '1.5' }}>
       File registry tracking spritesheets, sounds, animations, configurations, and mapping assets.
     </p>

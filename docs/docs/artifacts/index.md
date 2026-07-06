@@ -14,11 +14,3 @@ Index of design sheets, spritesheets, audio files, and engine configs for the **
 | <span className="material-symbols-outlined icon-inline">settings</span> **Bullet Wave Configs** | Configuration | <span className="status-badge status-planned">Planned</span> | `/src/config/waves.json` | JSON mapping active wave projectile patterns. |
 | <span className="material-symbols-outlined icon-inline">schema</span> **Engine Core Loop Schema** | Diagram | <span className="status-badge status-completed">Completed</span> | `/docs/docs/engine/` | Flowchart detailing engine lifecycle loops. |
 | <span className="material-symbols-outlined icon-inline">layers</span> **UI Mockups** | Design | <span className="status-badge status-planned">Planned</span> | `/static/img/ui/` | Interface layouts for combat options and menus. |
-
----
-
-## Asset Integration Guidelines
-
-1. **Pixel Art:** Align assets to a 32x32 bounding grid. Save in `.png` format with transparency enabled.
-2. **Audio:** Compress background tracks in `.ogg` format. Embed looping metadata tags where appropriate.
-3. **Registry Updates:** Update this page when committing new files to keep workspace inventory accurate.

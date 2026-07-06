@@ -22,6 +22,11 @@ const sidebars: SidebarsConfig = {
       label: 'The Artifacts and Assets',
       items: ['artifacts/index'], // Maps to artifacts/index.md
     },
+    {
+      type: 'doc',
+      id: 'contributing',
+      label: 'How to Contribute & Run',
+    },
   ],
 };
 

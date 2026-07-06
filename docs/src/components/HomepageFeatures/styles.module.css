@@ -20,6 +20,10 @@
 }
 
 /* Hover styles matching glass card */
+.featureCol :global(.glass-card) {
+  cursor: pointer;
+}
+
 .featureCol :global(.glass-card):hover .featureIcon {
   transform: scale(1.15);
 }
@@ -84,38 +88,7 @@
   opacity: 1;
 }
 
-.featureFooter {
-  margin-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  padding-top: 1rem;
-}
 
-[data-theme='light'] .featureFooter {
-  border-top-color: rgba(0, 0, 0, 0.06);
-}
-
-.featureLink {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--ifm-color-primary) !important;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  text-decoration: none;
-}
-
-.featureLink:hover {
-  text-decoration: none;
-}
-
-.arrow {
-  display: inline-block;
-  transition: transform 0.2s ease;
-}
-
-.featureLink:hover .arrow {
-  transform: translateX(4px);
-}
 
 @media screen and (max-width: 996px) {
   .features {

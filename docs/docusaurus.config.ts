@@ -101,16 +101,16 @@ const config: Config = {
           title: 'Community',
           items: [
             {
-              label: 'GitHub Repository',
-              href: 'https://github.com/EduLoboM/Char2D',
+              label: 'How to Contribute & Run',
+              href: 'https://edulobom.github.io/Char2D/docs/contributing',
             },
             {
               label: 'Report an Issue',
               href: 'https://github.com/EduLoboM/Char2D/issues',
             },
             {
-              label: 'Run Locally',
-              href: 'https://github.com/EduLoboM/Char2D/blob/main/README.md',
+              label: 'GitHub Repository',
+              href: 'https://github.com/EduLoboM/Char2D',
             },
           ],
         },
@@ -118,16 +118,16 @@ const config: Config = {
           title: 'Development',
           items: [
             {
-              label: 'Awesome Beef',
-              href: 'https://github.com/Jonathan-Racaud/awesome-beef',
-            },
-            {
               label: 'Releases & Downloads',
               href: 'https://github.com/EduLoboM/Char2D/releases',
             },
             {
               label: 'EPL-2.0 License',
               href: 'https://github.com/EduLoboM/Char2D/blob/main/LICENSE',
+            },
+            {
+              label: 'Awesome Beef',
+              href: 'https://github.com/Jonathan-Racaud/awesome-beef',
             },
           ],
         },

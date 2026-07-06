@@ -1,7 +1,9 @@
-import type {ReactNode} from 'react';
+import type { ReactNode } from 'react';
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
 import Link from '@docusaurus/Link';
+import { useHistory } from '@docusaurus/router';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './styles.module.css';
 
 type FeatureLink = {
@@ -19,7 +21,7 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'The Game Engine',
+    title: 'Game Engine Engineering',
     link: '/docs/engine/',
     linkLabel: 'Explore Engine Architecture',
     icon: 'terminal',
@@ -34,8 +36,8 @@ const FeatureList: FeatureItem[] = [
     linkLabel: 'Read Combat Mechanics',
     icon: 'sports_esports',
     links: [
-      { label: 'Dungeon Phases', url: '/docs/game/#2-dungeon-phase' },
-      { label: 'Combat & Bullet Dodging', url: '/docs/game/#3-combat-phase' },
+      { label: 'Dungeon Phases', url: '/docs/game/#game-loop' },
+      { label: 'Combat & Bullet Dodging', url: '/docs/game/#combat-system' },
       { label: 'Status Synergies', url: '/docs/game/#status-synergies' },
     ],
   },
@@ -46,15 +48,26 @@ const FeatureList: FeatureItem[] = [
     icon: 'folder_open',
     links: [
       { label: 'Asset Registry', url: '/docs/artifacts/#initial-project-assets' },
-      { label: 'Integration Guidelines', url: '/docs/artifacts/#asset-integration-guidelines' },
+      { label: 'Integration Guidelines', url: '/docs/contributing' },
     ],
   },
 ];
 
-function Feature({title, icon, link, linkLabel, links}: FeatureItem) {
+function Feature({ title, icon, link, linkLabel, links }: FeatureItem) {
+  const history = useHistory();
+  const linkWithBase = useBaseUrl(link);
+
+  const handleCardClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement;
+    if (target.closest('a')) {
+      return;
+    }
+    history.push(linkWithBase);
+  };
+
   return (
     <div className={clsx('col col--4', styles.featureCol)}>
-      <div className="glass-card">
+      <div className="glass-card" onClick={handleCardClick}>
         <div className={styles.featureInfo}>
           <Heading as="h3" className={styles.featureTitle}>
             <span className={clsx('material-symbols-outlined', styles.featureIcon)}>
@@ -74,11 +87,6 @@ function Feature({title, icon, link, linkLabel, links}: FeatureItem) {
               </li>
             ))}
           </ul>
-        </div>
-        <div className={styles.featureFooter}>
-          <Link className={styles.featureLink} to={link}>
-            {linkLabel} <span className={styles.arrow}>→</span>
-          </Link>
         </div>
       </div>
     </div>

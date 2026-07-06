@@ -123,12 +123,28 @@
   box-shadow: 0 12px 30px rgba(41, 141, 62, 0.08);
 }
 
+.glass-card .material-icons-outlined,
+.glass-card .material-symbols-outlined {
+  transition: transform var(--transition-speed) var(--transition-bezier);
+}
+
+.glass-card:hover .material-icons-outlined,
+.glass-card:hover .material-symbols-outlined {
+  transform: scale(1.1);
+}
+
 /* Grid Layout for Docs Dashboard */
 .doc-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.25rem;
   margin: 1.5rem 0;
+}
+
+@media screen and (max-width: 640px) {
+  .doc-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Synergy Icons for Mechanics Page */
@@ -214,7 +230,6 @@
 .footer {
   background: linear-gradient(180deg, #0e121a 0%, #080b10 100%) !important;
   border-top: 1px solid rgba(62, 204, 95, 0.15);
-  box-shadow: 0 -10px 40px rgba(8, 11, 16, 0.5);
   padding: 4rem 2rem 2rem;
   transition: border-color var(--transition-speed) var(--transition-bezier);
   position: relative;
@@ -306,6 +321,10 @@
   color: #718096 !important;
 }
 
+.footer__link-item svg {
+  display: none !important;
+}
+
 /* Minimalist & Premium Table Styles */
 article table {
   width: 100%;
@@ -328,6 +347,7 @@ article th {
   letter-spacing: 0.08em;
   padding: 12px 16px !important;
   text-align: left;
+  transition: color var(--transition-speed) var(--transition-bezier), border-color var(--transition-speed) var(--transition-bezier);
 }
 
 [data-theme='light'] article th {
@@ -534,4 +554,82 @@ kbd[class*='searchHint'] {
 [data-theme='light'] .navbar__search-input:focus ~ [class*='searchHintContainer'] kbd[class*='searchHint'] {
   background-color: rgba(41, 141, 62, 0.06) !important;
   border: 1px solid rgba(41, 141, 62, 0.2) !important;
+}
+
+/* Synergy Hover System - Reactive Table Colors */
+.synergies-table-container:has(tbody tr:nth-child(1):hover) th {
+  color: #ff4d4d !important;
+  border-bottom-color: #ff4d4d !important;
+}
+.synergies-table-container tbody tr:nth-child(1):hover {
+  background-color: rgba(255, 77, 77, 0.04) !important;
+}
+.synergies-table-container tbody tr:nth-child(1):hover code {
+  color: #ff4d4d !important;
+}
+
+.synergies-table-container:has(tbody tr:nth-child(2):hover) th {
+  color: #f57c00 !important;
+  border-bottom-color: #f57c00 !important;
+}
+.synergies-table-container tbody tr:nth-child(2):hover {
+  background-color: rgba(245, 124, 0, 0.04) !important;
+}
+.synergies-table-container tbody tr:nth-child(2):hover code {
+  color: #f57c00 !important;
+}
+
+.synergies-table-container:has(tbody tr:nth-child(3):hover) th {
+  color: #c084fc !important;
+  border-bottom-color: #c084fc !important;
+}
+.synergies-table-container tbody tr:nth-child(3):hover {
+  background-color: rgba(192, 132, 252, 0.04) !important;
+}
+.synergies-table-container tbody tr:nth-child(3):hover code {
+  color: #c084fc !important;
+}
+
+.synergies-table-container:has(tbody tr:nth-child(4):hover) th {
+  color: #3b82f6 !important;
+  border-bottom-color: #3b82f6 !important;
+}
+.synergies-table-container tbody tr:nth-child(4):hover {
+  background-color: rgba(59, 130, 246, 0.04) !important;
+}
+.synergies-table-container tbody tr:nth-child(4):hover code {
+  color: #3b82f6 !important;
+}
+
+.synergies-table-container:has(tbody tr:nth-child(5):hover) th {
+  color: #adb5bd !important;
+  border-bottom-color: #adb5bd !important;
+}
+.synergies-table-container tbody tr:nth-child(5):hover {
+  background-color: rgba(173, 181, 189, 0.04) !important;
+}
+.synergies-table-container tbody tr:nth-child(5):hover code {
+  color: #adb5bd !important;
+}
+
+.synergies-table-container:has(tbody tr:nth-child(6):hover) th {
+  color: #3ecc5f !important;
+  border-bottom-color: #3ecc5f !important;
+}
+.synergies-table-container tbody tr:nth-child(6):hover {
+  background-color: rgba(62, 204, 95, 0.04) !important;
+}
+.synergies-table-container tbody tr:nth-child(6):hover code {
+  color: #3ecc5f !important;
+}
+
+.synergies-table-container:has(tbody tr:nth-child(7):hover) th {
+  color: #ffd43b !important;
+  border-bottom-color: #ffd43b !important;
+}
+.synergies-table-container tbody tr:nth-child(7):hover {
+  background-color: rgba(255, 212, 59, 0.04) !important;
+}
+.synergies-table-container tbody tr:nth-child(7):hover code {
+  color: #ffd43b !important;
 }

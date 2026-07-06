@@ -38,6 +38,16 @@ Use the sidebar or choose a section below to get started:
       File registry tracking spritesheets, sounds, animations, configurations, and mapping assets.
     </p>
   </a>
+
+  <a href="./contributing" className="glass-card" style={{ textDecoration: 'none', color: 'inherit' }}>
+    <div style={{ marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+      <span className="material-icons-outlined" style={{ color: 'var(--ifm-color-primary)', fontSize: '1.5rem' }}>groups</span>
+      <h3 style={{ margin: 0 }}>How to Contribute & Run</h3>
+    </div>
+    <p style={{ fontSize: '0.85rem', margin: 0, opacity: 0.8, lineHeight: '1.5' }}>
+      Rules for code standards, git workflow, asset integration guidelines, and running the project locally.
+    </p>
+  </a>
 </div>
 
 ---

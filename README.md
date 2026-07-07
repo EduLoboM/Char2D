@@ -5,7 +5,7 @@
 ---
 # **Char2D**
 
-**A 2D game engine built in [Beef Lang](https://www.beeflang.org/) for grid-based RPGs, featuring hybrid turn-based combat and active bullet dodging.**
+_A 2D game engine built in [Beef Lang](https://www.beeflang.org/) for grid-based RPGs, featuring hybrid turn-based combat and active bullet dodging._
 
 [![License: EPL-2.0](https://img.shields.io/badge/license-EPL--2.0-blue.svg)](https://github.com/EduLoboM/Char2D/blob/main/LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/EduLoboM/Char2D?style=flat&color=gold)](https://github.com/EduLoboM/Char2D/stargazers)
@@ -17,7 +17,7 @@
 
 ## **Documentation & How to Run the Project Locally**
 
-The website is built using [Docusaurus](https://docusaurus.io/) and is isolated within the `docs/` folder and can be accessed at [This Website](https://edulobom.github.io/Char2D/).
+The full documentation and help website can be accessed at [This Website](https://edulobom.github.io/Char2D/). The website is built using [Docusaurus](https://docusaurus.io/) and is isolated within the `docs/` folder.
 
 For complete contribution guidelines, coding standards, and detailed instructions on how to run both the engine and the documentation site locally, please read the [How to Contribute & Run](https://edulobom.github.io/Char2D/docs/contributing/) guide.
 

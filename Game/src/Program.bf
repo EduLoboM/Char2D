@@ -15,7 +15,7 @@ class my_game : i_game_loop
         
     }
 
-    public void draw()
+    public void draw(float alpha)
     {
         
     }
@@ -33,7 +33,7 @@ class program
         my_game game = scope my_game();
         engine_core engine = scope engine_core(game);
 
-        if (engine.initialize("Char2D Game Window", 800, 600) case .Err)
+        if (engine.initialize("Char2D Game Window", 640, 360) case .Err)
         {
             logger.error("Failed to initialize engine.");
             return 1;

@@ -43,11 +43,28 @@ public class engine_core
             return .Err;
         }
 
+        SDL3.SDL_SetWindowAspectRatio(m_window, 16.0f / 9.0f, 16.0f / 9.0f);
+
         m_renderer = SDL3.SDL_CreateRenderer(m_window, null);
         if (m_renderer == null)
         {
             logger.error(scope $"Renderer could not be created! SDL_Error: {StringView(SDL3.SDL_GetError())}");
             return .Err;
+        }
+
+        if (!SDL3.SDL_SetRenderVSync(m_renderer, 1))
+        {
+            logger.warn(scope $"Could not set VSync! SDL_Error: {StringView(SDL3.SDL_GetError())}");
+        }
+
+        if (!SDL3.SDL_SetRenderLogicalPresentation(m_renderer, (int32)width, (int32)height, .SDL_LOGICAL_PRESENTATION_LETTERBOX))
+        {
+            logger.warn(scope $"Could not set logical presentation! SDL_Error: {StringView(SDL3.SDL_GetError())}");
+        }
+
+        if (!SDL3.SDL_SetDefaultTextureScaleMode(m_renderer, .SDL_SCALEMODE_NEAREST))
+        {
+            logger.warn(scope $"Could not set default texture scale mode! SDL_Error: {StringView(SDL3.SDL_GetError())}");
         }
 
         m_is_running = true;
@@ -65,9 +82,22 @@ public class engine_core
         SDL3.SDL_Event event = .();
 
         const float delta_time = 1.0f / 60.0f; 
+        uint64 old_time = SDL3.SDL_GetTicks();
+        double accumulator = 0.0;
 
         while (m_is_running)
         {
+            uint64 current_time = SDL3.SDL_GetTicks();
+            double frame_time = (current_time - old_time) / 1000.0;
+            old_time = current_time;
+            
+            if (frame_time > 0.25)
+            {
+                frame_time = 0.25;
+            }
+            
+            accumulator += frame_time;
+            
             while (SDL3.SDL_PollEvent(&event))
             {
                 if ((SDL3.SDL_EventType)event.type == .SDL_EVENT_QUIT)
@@ -75,18 +105,24 @@ public class engine_core
                     m_is_running = false;
                 }
             }
-
-            if (m_game_instance != null)
+            
+            while (accumulator >= delta_time)
             {
-                m_game_instance.update(delta_time);
+                if (m_game_instance != null)
+                {
+                    m_game_instance.update(delta_time);
+                }
+                accumulator -= delta_time;
             }
+            
+            float alpha = (float)(accumulator / delta_time);
 
-            SDL3.SDL_SetRenderDrawColor(m_renderer, 33, 33, 43, 255);
+            SDL3.SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 255);
             SDL3.SDL_RenderClear(m_renderer);
 
             if (m_game_instance != null)
             {
-                m_game_instance.draw();
+                m_game_instance.draw(alpha);
             }
 
             SDL3.SDL_RenderPresent(m_renderer);

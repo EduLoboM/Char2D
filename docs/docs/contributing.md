@@ -14,7 +14,7 @@ To ensure a smooth collaboration, please follow these guidelines when contributi
 - **Documentation:** Always document public APIs and document complex logic blocks.
 
 ### Asset & Resource Integration
-- **Pixel Art:** Align all visual assets to a **64x64 pixel grid**. Export files in **.png** format with transparent backgrounds.
+- **Pixel Art:** Align all visual assets to a **32x32 pixel grid** for characters and at least **16x16 pixel grid** for bullets. Export files in **.png** format with transparent backgrounds.
 - **Audio & Soundtracks:** Background music and sound effects must be compressed as **.ogg** files. Ensure loop metadata tags are included for BGM.
 - **Asset Registry:** When adding new asset files, make sure to update the **[Asset Registry](./artifacts/index.md)** document.
 
@@ -50,8 +50,25 @@ The documentation site is built using **[Docusaurus](https://docusaurus.io/)**. 
 4. **Access the site:**
    Open your browser and navigate to **[http://localhost:3000/Char2D/](http://localhost:3000/Char2D/)**. Any changes made to the Markdown files will hot-reload automatically.
 
-### Running the Game Engine using Beef IDE
-To run or build the Char2D game engine/demo:
-1. Ensure you have the **[Beef IDE](https://www.beeflang.org/)** installed on your machine.
-2. Open the Beef IDE and load the workspace file (**Workspace.beefproj** or folder) from the repository root.
-3. Select your target configuration (e.g., **Debug** or **Release**) and press **F5** to compile and run the engine.
+### Running the Game Engine
+To run or build the Char2D game engine/demo, follow these steps:
+
+1. **Ensure the Beef Toolchain is installed:**
+   Ensure you have the **[Beef Toolchain](https://www.beeflang.org/)** installed on your machine. The compiler/build system is **BeefBuild**.
+
+2. **Configure SDL3 & SDL3_image paths:**
+   The workspace depends on the Beef wrappers for SDL3 and SDL3_image. By default, **[BeefSpace.toml](https://github.com/EduLoboM/Char2D/blob/main/BeefSpace.toml)** references these dependencies under the parent directory. Make sure to clone these repositories adjacent to your **Char2D** repository or adjust their paths inside the **[BeefSpace.toml](https://github.com/EduLoboM/Char2D/blob/main/BeefSpace.toml)** file in the root directory:
+   ```toml
+   Projects = {
+     SDL3 = {Path = "../SDL3-Beef"},
+     SDL3_image = {Path = "../SDL3_image-Beef"},
+     ...
+   }
+   ```
+
+3. **Running the Engine:**
+   You can compile and run the engine via the command line using the **[run.sh](https://github.com/EduLoboM/Char2D/blob/main/run.sh)** script located in the repository root by running:
+      ```bash
+      ./run.sh
+      ```
+

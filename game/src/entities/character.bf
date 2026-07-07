@@ -12,7 +12,9 @@ class character {
     public int stagger;
     public int mercy_bar;
     public int max_mercy_bar;
-
+    public int tp;
+    public int max_tp;
+    
     public float x;
     public float y;
     public float width = 32;
@@ -27,6 +29,8 @@ class character {
         this.stagger = 0;
         this.max_mercy_bar = max_mercy_bar;
         this.mercy_bar = 0;
+        this.max_tp = 100;
+        this.tp = 0;
         
         this.x = start_x;
         this.y = start_y;
@@ -80,6 +84,15 @@ class character {
 
     public bool is_mercy_ready() {
         return this.mercy_bar == this.max_mercy_bar;
+    }
+
+    public void reset_character(float start_x, float start_y) {
+        this.health = this.max_health;
+        this.stagger = 0;
+        this.mercy_bar = 0;
+        this.tp = 0;
+        this.x = start_x;
+        this.y = start_y;
     }
 
     public bool is_dead() {

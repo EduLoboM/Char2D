@@ -62,11 +62,12 @@
 .logoContainer {
   display: flex;
   justify-content: center;
+  margin-bottom: 2.5rem;
 }
 
 .heroLogo {
-  width: 450px;
-  height: 450px;
+  width: 550px;
+  height: 550px;
   filter: drop-shadow(0 6px 30px rgba(var(--ifm-color-primary-rgb), 0.25));
   transition: transform 0.3s ease;
 }

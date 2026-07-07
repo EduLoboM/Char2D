@@ -122,7 +122,7 @@ public class engine_core
 
             if (m_game_instance != null)
             {
-                m_game_instance.draw(alpha);
+                m_game_instance.draw(m_renderer, alpha);
             }
 
             SDL3.SDL_RenderPresent(m_renderer);

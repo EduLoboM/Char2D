@@ -1,9 +1,8 @@
 <div align="center">
 
-<img src="docs/static/img/logo.png" alt="Char2D Logo" width="450" />
+<img src="docs/static/img/logo_texto.png" alt="Char2D Logo" width="450" />
 
 ---
-# **Char2D**
 
 _A 2D game engine built in [Beef Lang](https://www.beeflang.org/) for grid-based RPGs, featuring hybrid turn-based combat and active bullet dodging._
 

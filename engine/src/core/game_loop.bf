@@ -1,6 +1,6 @@
 using SDL3;
 
-namespace Engine.Core;
+namespace engine.core;
 
 public interface i_game_loop
 {

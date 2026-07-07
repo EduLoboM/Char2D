@@ -9,7 +9,7 @@ _A 2D game engine built in [Beef Lang](https://www.beeflang.org/) for grid-based
 [![License: EPL-2.0](https://img.shields.io/badge/license-EPL--2.0-blue.svg)](https://github.com/EduLoboM/Char2D/blob/main/LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/EduLoboM/Char2D?style=flat&color=gold)](https://github.com/EduLoboM/Char2D/stargazers)
 [![GitHub Issues](https://img.shields.io/github/issues/EduLoboM/Char2D)](https://github.com/EduLoboM/Char2D/issues)
-[![Deploy Docs](https://img.shields.io/github/actions/workflow/status/EduLoboM/Char2D/deploy-docs.yml?label=docs&logo=github)](https://github.com/EduLoboM/Char2D/actions/workflows/deploy-docs.yml)
+[![Deploy Docs](https://img.shields.io/github/actions/workflow/status/EduLoboM/Char2D/deploy_docs.yml?label=docs&logo=github)](https://github.com/EduLoboM/Char2D/actions/workflows/deploy_docs.yml)
 [![Built with Beef](https://img.shields.io/badge/built%20with-beef%20lang-e44d26)](https://www.beeflang.org/)
 
 ---

@@ -2,9 +2,9 @@ FileVersion = 1
 Projects = {
   SDL3 = {Path = "../SDL3-Beef"},
   SDL3_image = {Path = "../SDL3_image-Beef"},
-  Engine = {Path = "Engine"},
-  Game = {Path = "Game"}
+  engine = {Path = "engine"},
+  game = {Path = "game"}
 }
 
 [Workspace]
-StartupProject = "Game"
+StartupProject = "game"

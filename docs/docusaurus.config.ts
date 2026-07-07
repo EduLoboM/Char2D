@@ -29,7 +29,7 @@ const config: Config = {
   ],
 
   clientModules: [
-    './src/theme/theme-favicon.js',
+    './src/theme/theme_favicon.js',
   ],
 
   i18n: {

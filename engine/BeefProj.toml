@@ -2,5 +2,5 @@ FileVersion = 1
 Dependencies = {corlib = "*", SDL3 = "*", SDL3_image = "*"}
 
 [Project]
-Name = "Engine"
+Name = "engine"
 TargetType = "BeefLib"

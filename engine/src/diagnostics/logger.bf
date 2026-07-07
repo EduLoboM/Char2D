@@ -1,6 +1,6 @@
 using System;
 
-namespace Engine.Core;
+namespace engine.diagnostics;
 
 public static class logger
 {

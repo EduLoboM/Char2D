@@ -1,7 +1,8 @@
 using SDL3;
 using System;
+using engine.diagnostics;
 
-namespace Engine.Core;
+namespace engine.core;
 
 public class engine_core
 {

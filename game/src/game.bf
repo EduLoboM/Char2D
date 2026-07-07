@@ -1,22 +1,9 @@
 using System;
-using Engine.Core;
+using engine.core;
+using engine.diagnostics;
 using SDL3;
 
-namespace Game;
-
-enum combat_state {
-    strategy,
-    dodging
-}
-
-struct enemy_bullet {
-    public float x;
-    public float y;
-    public float size = 12.0f;
-    public float speed_x = 0.0f;
-    public float speed_y = 0.0f;
-    public int damage = 10;
-}
+namespace game;
 
 class my_game : i_game_loop
 {
@@ -143,23 +130,5 @@ class my_game : i_game_loop
         logger.info("my_game is cleaning up!");
         delete m_player;
         delete m_enemy;
-    }
-}
-
-class program
-{
-    public static int Main(String[] args)
-    {
-        my_game game = scope my_game();
-        engine_core engine = scope engine_core(game);
-
-        if (engine.initialize("Char2D Game Window", 640, 360) case .Err)
-        {
-            logger.error("Failed to initialize engine.");
-            return 1;
-        }
-
-        engine.run();
-        return 0;
     }
 }

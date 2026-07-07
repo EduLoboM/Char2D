@@ -1,7 +1,7 @@
 using System;
-using Engine.Core;
+using engine.core;
 
-namespace Game;
+namespace game;
 
 class character {
     public String name ~ delete _;

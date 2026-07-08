@@ -66,5 +66,5 @@ Design logs, mechanics descriptions, and gameplay systems.
 | Meter | Visual Indicator | Baseline Behavior & Maximum Effects |
 | :--- | :--- | :--- |
 | <span className="material-symbols-outlined icon-inline">favorite</span> **Health** | Red Bar | Represents vital status. Reaching 0 defeats/kills the combatant. |
-| <span className="material-symbols-outlined icon-inline">dangerous</span> **Stagger** | Yellow Shield Bar | Shielding boundary. Reaching 0 stuns the target for 1 round; resets next turn. |
+| <span className="material-symbols-outlined icon-inline">dangerous</span> **Stagger** | White Shield Bar | Shielding boundary. Reaching 0 stuns the target for 1 round; resets next turn. |
 | <span className="material-symbols-outlined icon-inline">handshake</span> **Mercy** | Blue Harmony Bar | Behavioral alignment. Higher values reduce enemy attack power and allow sparing/capturing. |

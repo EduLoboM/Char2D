@@ -23,14 +23,14 @@ public class engine_core
 
     public Result<void> initialize(StringView title, int width, int height)
     {
-        logger.info("Initializing SDL3...");
+        logger.setup("Initializing SDL3...");
         if (!SDL3.SDL_Init(.SDL_INIT_VIDEO | .SDL_INIT_EVENTS))
         {
             logger.error(scope $"SDL could not initialize! SDL_Error: {StringView(SDL3.SDL_GetError())}");
             return .Err;
         }
 
-        logger.info(scope $"Creating window '{title}' ({width}x{height})...");
+        logger.setup(scope $"Creating window '{title}' ({width}x{height})...");
         m_window = SDL3.SDL_CreateWindow(
             title.ToScopeCStr!(),
             (int32)width,
@@ -79,7 +79,7 @@ public class engine_core
 
     public void run()
     {
-        logger.info("Starting game loop...");
+        logger.setup("Starting game loop...");
         SDL3.SDL_Event event = .();
 
         const float delta_time = 1.0f / 60.0f; 
@@ -132,7 +132,7 @@ public class engine_core
 
     public void shutdown()
     {
-        logger.info("Shutting down engine...");
+        logger.setup("Shutting down engine...");
         if (m_game_instance != null)
         {
             m_game_instance.cleanup();

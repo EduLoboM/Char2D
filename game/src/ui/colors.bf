@@ -18,7 +18,7 @@ static class colors
     public const uint8[4] ARENA_BG = .(50, 50, 50, 255);
 
     public const uint8[4] SOUL_GREEN = .(0, 255, 100, 255);
-    public const uint8[4] GRAZE_YELLOW = .(252, 239, 141, 255);
+    public const uint8[4] GRAZE_PURPLE = .(118, 71, 173, 255);
 
     public const uint8[4] TEXT_DEFAULT = .(200, 200, 210, 255);
     public const uint8[4] TEXT_MUTED = .(140, 140, 155, 255);

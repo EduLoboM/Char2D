@@ -17,6 +17,8 @@ class combat_manager
 
     public ActionType m_selected_action = .Fight;
     public MinigameType m_selected_minigame = .Slider;
+    public DefenseType m_selected_defense = .Evade;
+    public DefenseType? active_defense = null;
     public MinigameType? m_last_mg_type = null;
     public BulletPatternType? m_last_pattern = null;
     public float current_mg_multiplier = 1.0f;
@@ -67,6 +69,8 @@ class combat_manager
                 update_strategy(ref input, game);
             case .selecting_minigame:
                 update_selecting_minigame(ref input, game);
+            case .selecting_defense:
+                update_selecting_defense(ref input, game);
             case .minigame:
                 if (m_active_minigame != null)
                     m_active_minigame.update(ref input, delta_time, game);
@@ -140,6 +144,66 @@ class combat_manager
         logger.game("Minigame Selection opened.");
     }
 
+    public void enter_defense_selection()
+    {
+        m_current_state = .selecting_defense;
+        m_selected_defense = .Evade;
+        logger.game("Defense Selection opened.");
+    }
+
+    private void update_selecting_defense(ref input_state input, my_game game)
+    {
+        if (input.return_just_pressed)
+        {
+            m_current_state = .strategy;
+            logger.game("Cancelled defense selection.");
+            return;
+        }
+
+        if (input.left_just_pressed)
+        {
+            switch (m_selected_defense)
+            {
+                case .Evade: m_selected_defense = .Counter;
+                case .Guard: m_selected_defense = .Evade;
+                case .Counter: m_selected_defense = .Guard;
+            }
+        }
+        else if (input.right_just_pressed)
+        {
+            switch (m_selected_defense)
+            {
+                case .Evade: m_selected_defense = .Guard;
+                case .Guard: m_selected_defense = .Counter;
+                case .Counter: m_selected_defense = .Evade;
+            }
+        }
+
+        if (input.space_just_pressed)
+        {
+            execute_defense(m_selected_defense, game);
+        }
+    }
+
+    public void execute_defense(DefenseType type, my_game game)
+    {
+        active_defense = type;
+        logger.game(scope $"Selected defense: {type}");
+
+        // Generates 16 TP immediately
+        game.m_player.add_tp(16);
+
+        // Pre-apply resistance modifier if Guard
+        if (type == .Guard)
+            game.m_soul.resistance = 0.5f;
+        else
+            game.m_soul.resistance = 1.0f;
+
+        m_current_state = .strategy;
+        player_actions_left--;
+        turn_manager.check_turn_resolution(game, this);
+    }
+
     private void start_minigame(MinigameType type)
     {
         delete m_active_minigame;
@@ -179,6 +243,17 @@ class combat_manager
         m_current_state = .dodging;
         logger.game("Dodge Phase.");
 
+        game.m_soul.size = 28.0f;
+        game.m_soul.hitbox_radius = 11.0f;
+        if (active_defense == .Guard)
+        {
+            game.m_soul.resistance = 0.5f;
+        }
+        else
+        {
+            game.m_soul.resistance = 1.0f;
+        }
+
         game.m_soul.reset_position(game.m_arena);
 
         m_bullets.Clear();
@@ -208,6 +283,9 @@ class combat_manager
         logger.game("Strategy Phase.");
         m_bullets.Clear();
         game.m_soul.resistance = 1.0f;
+        game.m_soul.size = 28.0f;
+        game.m_soul.hitbox_radius = 11.0f;
+        active_defense = null;
 
         if (game.m_enemy.is_staggered())
         {

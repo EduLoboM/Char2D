@@ -24,12 +24,7 @@ class turn_manager
 
             case .Defend:
                 logger.game("Defend Action.");
-                game.m_soul.resistance -= 0.5f;
-                game.m_player.add_tp(50);
-                if (game.m_soul.resistance < 0.1f)
-                    game.m_soul.resistance = 0.1f;
-                manager.player_actions_left--;
-                check_turn_resolution(game, manager);
+                manager.enter_defense_selection();
 
             case .Mercy:
                 logger.game("Mercy Action.");

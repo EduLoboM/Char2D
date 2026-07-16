@@ -73,9 +73,9 @@ class draw_utils
         SDL_SetRenderDrawBlendMode(renderer, SDL_BlendMode.SDL_BLENDMODE_NONE);
     }
 
-    public static void draw_bar(SDL_Renderer* renderer, float x, float y, float val, float max_val, uint8 r, uint8 g, uint8 b)
+    public static void draw_bar(SDL_Renderer* renderer, float x, float y, float width, float val, float max_val, uint8 r, uint8 g, uint8 b)
     {
-        float bar_width = 32;
+        float bar_width = width;
         float bar_height = 4;
         float bar_w = val * bar_width / max_val;
         if (bar_w < 0.0f) bar_w = 0.0f;

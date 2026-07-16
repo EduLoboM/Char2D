@@ -6,9 +6,10 @@ class player_soul
 {
     public float x;
     public float y;
-    public float size = 12.0f;
-    public float speed = 75.0f;
+    public float size = 28.0f;
+    public float speed = 120.0f;
     public float resistance = 1.0f;
+    public float hitbox_radius = 11.0f;
 
     public float center_x => x + size / 2.0f;
     public float center_y => y + size / 2.0f;

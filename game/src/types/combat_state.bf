@@ -4,5 +4,6 @@ enum combat_state {
     strategy,
     selecting_minigame,
     minigame,
-    dodging
+    dodging,
+    selecting_defense
 }

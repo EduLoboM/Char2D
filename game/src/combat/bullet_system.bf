@@ -53,8 +53,30 @@ class bullet_system
 
     private static void apply_damage(enemy_bullet* bullet, my_game game)
     {
-        game.m_player.take_damage((int)(bullet.damage * game.m_soul.resistance));
-        logger.game(scope $"The player took damage! Health: {game.m_player.health}");
+        if (game.m_combat.active_defense == .Evade)
+        {
+            if (game_rand.next_float() < 0.20f)
+            {
+                logger.game("Evaded! 0 damage taken.");
+                game.invincibility_timer = INVINCIBILITY_DURATION;
+                game.invincibility_phase = 0.0f;
+                return;
+            }
+        }
+
+        int damage_taken = (int)(bullet.damage * game.m_soul.resistance);
+        game.m_player.take_damage(damage_taken);
+        game.m_player.add_tp(-10);
+        logger.game(scope $"The player took damage! Health: {game.m_player.health}. TP lost!");
+
+        if (game.m_combat.active_defense == .Counter)
+        {
+            int counter_damage = damage_taken / 2;
+            if (counter_damage < 1) counter_damage = 1;
+            game.m_enemy.take_damage(counter_damage);
+            logger.game(scope $"Counter Activated! Dealt {counter_damage} damage to enemy.");
+        }
+
         game.invincibility_timer = INVINCIBILITY_DURATION;
         game.invincibility_phase = 0.0f;
     }
@@ -74,6 +96,8 @@ class bullet_system
         float soul_x = game.get_soul_x();
         float soul_y = game.get_soul_y();
         float soul_size = game.get_soul_size();
+        float scx = soul_x + soul_size / 2.0f;
+        float scy = soul_y + soul_size / 2.0f;
 
         if (bullet.type == .LaserActive)
         {
@@ -81,17 +105,15 @@ class bullet_system
             float max_x = Math.Max(bullet.x, bullet.speed_x);
             float min_y = Math.Min(bullet.y, bullet.speed_y);
             float max_y = Math.Max(bullet.y, bullet.speed_y);
-            float r = soul_size / 2.0f + bullet.size / 2.0f;
+            float r = game.m_soul.hitbox_radius + bullet.size / 2.0f;
 
 
-            if (soul_x + soul_size < min_x - r || soul_x > max_x + r ||
-                soul_y + soul_size < min_y - r || soul_y > max_y + r)
+            if (scx < min_x - r || scx > max_x + r ||
+                scy < min_y - r || scy > max_y + r)
             {
                 return false;
             }
 
-            float scx = soul_x + soul_size / 2.0f;
-            float scy = soul_y + soul_size / 2.0f;
             float vx = bullet.speed_x - bullet.x;
             float vy = bullet.speed_y - bullet.y;
             float v_lensq = vx * vx + vy * vy;
@@ -113,10 +135,14 @@ class bullet_system
         }
         else if (bullet.type.IsCollidable)
         {
-            return (soul_x < bullet.x + bullet.size &&
-                    soul_x + soul_size > bullet.x &&
-                    soul_y < bullet.y + bullet.size &&
-                    soul_y + soul_size > bullet.y);
+            float closest_x = Math.Clamp(scx, bullet.x, bullet.x + bullet.size);
+            float closest_y = Math.Clamp(scy, bullet.y, bullet.y + bullet.size);
+
+            float dx = scx - closest_x;
+            float dy = scy - closest_y;
+            float dist_sq = dx * dx + dy * dy;
+
+            return dist_sq < game.m_soul.hitbox_radius * game.m_soul.hitbox_radius;
         }
         return false;
     }
@@ -141,7 +167,7 @@ class bullet_system
             if (!bullet.is_grazed)
             {
                 bullet.is_grazed = true;
-                game.m_player.add_tp(5);
+                game.m_player.add_tp(2);
                 logger.game(scope $"Graze! TP gained. Current TP: {game.m_player.tp}");
             }
         }

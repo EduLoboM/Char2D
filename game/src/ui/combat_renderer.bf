@@ -39,4 +39,9 @@ class combat_renderer
     {
         hud_renderer.draw_minigame_selection(renderer, selected, player_tp);
     }
+
+    public static void draw_defense_selection(SDL_Renderer* renderer, DefenseType selected)
+    {
+        hud_renderer.draw_defense_selection(renderer, selected);
+    }
 }

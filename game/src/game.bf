@@ -61,8 +61,8 @@ class my_game : i_game_loop
     {
         logger.setup("my_game has initialized!");
 
-        m_party.Add(new character("Hero", 100, 10, 5, 5, 100.0f, 150.0f, "static/img/sprites/character.png", 32, 32));
-        m_enemies.Add(new character("Demon", 100, 10, 5, 5, 500.0f, 150.0f, "static/img/sprites/polar_bear_2026.png", 32, 32));
+        m_party.Add(new character("Hero", 100, 10, 5, 5, 78.0f, 150.0f, "static/img/sprites/character.png", 64, 64));
+        m_enemies.Add(new character("Demon", 100, 10, 5, 5, 498.0f, 150.0f, "static/img/sprites/polar_bear_2026.png", 64, 64));
 
         m_soul.reset_position(m_arena);
         m_combat.initialize();
@@ -70,26 +70,28 @@ class my_game : i_game_loop
 
     public void update(float delta_time)
     {
+        float dt = Math.Min(delta_time, 0.1f);
+
         bool* keys = (bool*)SDL_GetKeyboardState(null);
         m_input.update(keys);
 
-        m_game_time += delta_time;
+        m_game_time += dt;
 
         for (var c in m_party)
-            c.update_shake(delta_time);
+            c.update_shake(dt);
         for (var c in m_enemies)
-            c.update_shake(delta_time);
+            c.update_shake(dt);
 
         if (graze_visual_timer > 0.0f)
         {
-            graze_visual_timer -= delta_time;
+            graze_visual_timer -= dt;
             if (graze_visual_timer < 0.0f)
                 graze_visual_timer = 0.0f;
         }
 
-        update_invincibility(delta_time);
+        update_invincibility(dt);
 
-        m_combat.update(delta_time, ref m_input, this);
+        m_combat.update(dt, ref m_input, this);
 
         check_battle_status();
     }
@@ -129,7 +131,7 @@ class my_game : i_game_loop
     private void respawn_player()
     {
         for (var c in m_party)
-            c.reset_character(100.0f, 150.0f);
+            c.reset_character(78.0f, 150.0f);
         m_combat.m_last_mg_type = null;
         m_combat.m_last_pattern = null;
         invincibility_timer = 0.0f;
@@ -143,7 +145,7 @@ class my_game : i_game_loop
         {
             c.max_health += 10;
             c.attack_power += 2;
-            c.reset_character(500.0f, 150.0f);
+            c.reset_character(498.0f, 150.0f);
         }
         m_combat.m_last_mg_type = null;
         m_combat.m_last_pattern = null;
@@ -152,7 +154,7 @@ class my_game : i_game_loop
 
     public void draw(SDL_Renderer* renderer, float alpha)
     {
-        if (m_combat.m_current_state == .strategy || m_combat.m_current_state == .selecting_minigame)
+        if (m_combat.m_current_state == .strategy || m_combat.m_current_state == .selecting_minigame || m_combat.m_current_state == .selecting_defense)
             combat_renderer.draw_action_panel(renderer, m_combat.m_selected_action);
 
         for (var c in m_party)
@@ -180,6 +182,9 @@ class my_game : i_game_loop
 
         if (m_combat.m_current_state == .selecting_minigame)
             combat_renderer.draw_minigame_selection(renderer, m_combat.m_selected_minigame, m_player.tp);
+
+        if (m_combat.m_current_state == .selecting_defense)
+            combat_renderer.draw_defense_selection(renderer, m_combat.m_selected_defense);
     }
 
     public void cleanup()

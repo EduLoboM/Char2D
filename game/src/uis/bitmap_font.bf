@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using SDL3;
 
 namespace game;
@@ -9,16 +10,41 @@ class bitmap_font
     
     private static int32[97] X_MINS = .(0, 12, 10, 6, 9, 5, 7, 13, 11, 11, 8, 9, 13, 11, 13, 10, 9, 11, 9, 9, 9, 9, 8, 9, 9, 9, 13, 13, 9, 10, 9, 9, 5, 6, 8, 8, 8, 8, 9, 7, 7, 10, 9, 8, 9, 5, 7, 8, 8, 8, 8, 9, 8, 8, 8, 6, 7, 7, 8, 11, 10, 11, 9, 9, 12, 8, 8, 10, 8, 9, 10, 9, 9, 12, 11, 9, 12, 6, 8, 9, 8, 9, 9, 9, 10, 8, 8, 7, 8, 9, 9, 10, 13, 10, 7, 11, 9);
     private static int32[97] WIDTHS = .(8, 6, 10, 18, 12, 20, 16, 4, 8, 8, 14, 12, 4, 8, 4, 10, 12, 8, 12, 12, 12, 12, 14, 12, 12, 12, 4, 4, 12, 10, 12, 12, 20, 18, 14, 14, 14, 14, 12, 16, 16, 10, 12, 14, 12, 20, 16, 14, 14, 14, 14, 12, 14, 14, 14, 18, 16, 16, 14, 8, 10, 8, 12, 12, 6, 14, 14, 10, 14, 12, 10, 12, 12, 6, 8, 12, 6, 18, 14, 12, 14, 12, 12, 12, 10, 14, 14, 16, 14, 12, 12, 10, 4, 10, 16, 8, 12);
-    private static SDL_Texture* s_tex = null;
+    private static Dictionary<String, SDL_Texture*> s_textures = new .();
 
-    public static void draw_string(SDL_Renderer* renderer, float x, float y, StringView text, int32 size)
+    public static ~this()
     {
-        if (s_tex == null)
+        for (var pair in s_textures)
         {
-            s_tex = SDL3_image.IMG_LoadTexture(renderer, "game/ast/fonts/grape_soda.png");
-            if (s_tex == null) return;
+            SDL_DestroyTexture(pair.value);
+            delete pair.key;
         }
-        SDL_Texture* tex = s_tex;
+        delete s_textures;
+    }
+
+    private static SDL_Texture* get_texture(SDL_Renderer* renderer, StringView font_name)
+    {
+        for (var pair in s_textures)
+        {
+            if (pair.key == font_name)
+                return pair.value;
+        }
+
+        String path = scope .();
+        path.AppendF("game/ast/fonts/{}.png", font_name);
+
+        SDL_Texture* tex = SDL3_image.IMG_LoadTexture(renderer, path.CStr());
+        if (tex != null)
+        {
+            s_textures[new String(font_name)] = tex;
+        }
+        return tex;
+    }
+
+    public static void draw_string(SDL_Renderer* renderer, float x, float y, StringView text, int32 size, StringView font_name = "grape_soda")
+    {
+        SDL_Texture* tex = get_texture(renderer, font_name);
+        if (tex == null) return;
         
         uint8 r = 255, g = 255, b = 255, a = 255;
         SDL_GetRenderDrawColor(renderer, &r, &g, &b, &a);
@@ -69,14 +95,10 @@ class bitmap_font
         }
     }
 
-    public static void draw_string_gradient(SDL_Renderer* renderer, float x, float y, StringView text, int32 size, SDL_FColor top_color, SDL_FColor bottom_color)
+    public static void draw_string_gradient(SDL_Renderer* renderer, float x, float y, StringView text, int32 size, SDL_FColor top_color, SDL_FColor bottom_color, StringView font_name = "grape_soda")
     {
-        if (s_tex == null)
-        {
-            s_tex = SDL3_image.IMG_LoadTexture(renderer, "game/ast/fonts/grape_soda.png");
-            if (s_tex == null) return;
-        }
-        SDL_Texture* tex = s_tex;
+        SDL_Texture* tex = get_texture(renderer, font_name);
+        if (tex == null) return;
         
         // Remove color mod from texture itself so geometry colors work
         SDL_SetTextureColorMod(tex, 255, 255, 255);

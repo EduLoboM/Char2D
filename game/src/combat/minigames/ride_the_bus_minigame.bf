@@ -59,10 +59,10 @@ class ride_the_bus_minigame : attack_minigame
     private const float CARD_HEIGHT = 55.0f;
     private const float CARD_GAP = 12.0f;
     private const float PANEL_CENTER_X = 320.0f;
-    private const float CARDS_Y = 268.0f;
+    private const float CARDS_Y = 253.0f;
     private const float PIP_SIZE = 6.0f;
     private const float PIP_GAP = 6.0f;
-    private const float PIP_Y = 235.0f;
+    private const float PIP_Y = 220.0f;
 
     private card[4] m_cards;
     private bool[4] m_revealed;
@@ -389,14 +389,14 @@ class ride_the_bus_minigame : attack_minigame
             }
         }
 
-        float text_w = prompt.Length * 6.0f * 1.5f;
+        float text_w = bitmap_font.measure_string(prompt, 16);
         SDL_SetRenderDrawColor(renderer, pr, pg2, pb, 255);
-        pixel_font.draw_pixel_string(renderer, PANEL_CENTER_X - text_w / 2.0f, 246, prompt, 1.5f);
+        bitmap_font.draw_string(renderer, PANEL_CENTER_X - text_w / 2.0f, 231 - 4, prompt, 16);
 
         float total_cards_w = CARD_WIDTH * 4 + CARD_GAP * 3;
         SDL_SetRenderDrawBlendMode(renderer, SDL_BlendMode.SDL_BLENDMODE_BLEND);
         draw_utils.set_color(renderer, colors.PANEL_BORDER_ALT, 100);
-        SDL_RenderLine(renderer, PANEL_CENTER_X - total_cards_w / 2.0f - 5, 261, PANEL_CENTER_X + total_cards_w / 2.0f + 5, 261);
+        SDL_RenderLine(renderer, PANEL_CENTER_X - total_cards_w / 2.0f - 5, 246, PANEL_CENTER_X + total_cards_w / 2.0f + 5, 246);
         SDL_SetRenderDrawBlendMode(renderer, SDL_BlendMode.SDL_BLENDMODE_NONE);
     }
 
@@ -416,7 +416,7 @@ class ride_the_bus_minigame : attack_minigame
     {
         if (m_message.Length == 0)
         {
-            float ctrl_y = 330;
+            float ctrl_y = 315;
             switch (m_stage)
             {
                 case .RedOrBlack:
@@ -497,7 +497,8 @@ class ride_the_bus_minigame : attack_minigame
             SDL_RenderRect(renderer, &rect);
 
             draw_utils.set_color(renderer, colors.GOLD);
-            pixel_font.draw_pixel_string(renderer, x + w / 2.0f - 6.0f, y + h / 2.0f - 5.0f, "?", 2.0f);
+            float q_w = bitmap_font.measure_string("?", 16);
+            bitmap_font.draw_string(renderer, x + (w - q_w) / 2.0f, y + (h - 16) / 2.0f, "?", 16);
         }
         else
         {
@@ -547,14 +548,10 @@ class ride_the_bus_minigame : attack_minigame
             r = colors.RED[0]; g = colors.RED[1]; b = colors.RED[2];
         }
 
-        SDL_FRect accent = .() { x = x + 1, y = y + 1, w = w - 2, h = 3 };
-        SDL_SetRenderDrawColor(renderer, r, g, b, 255);
-        SDL_RenderFillRect(renderer, &accent);
-
         SDL_SetRenderDrawColor(renderer, r, g, b, 255);
         SDL_RenderRect(renderer, &rect);
 
-        SDL_FRect inner_frame = .() { x = x + 2, y = y + 5, w = w - 4, h = h - 7 };
+        SDL_FRect inner_frame = .() { x = x + 2, y = y + 2, w = w - 4, h = h - 4 };
         SDL_SetRenderDrawBlendMode(renderer, SDL_BlendMode.SDL_BLENDMODE_BLEND);
         SDL_SetRenderDrawColor(renderer, r, g, b, 40);
         SDL_RenderRect(renderer, &inner_frame);
@@ -563,38 +560,39 @@ class ride_the_bus_minigame : attack_minigame
         SDL_SetRenderDrawColor(renderer, r, g, b, 255);
         if (c.value == 10)
         {
-            pixel_font.draw_pixel_string(renderer, x + 3, y + 7, "10", 1.0f);
+            bitmap_font.draw_string(renderer, x + 3, y + 3, "10", 16);
         }
         else
         {
             char8[2] rank_str = .();
             rank_str[0] = c.value_char();
             rank_str[1] = 0;
-            pixel_font.draw_pixel_string(renderer, x + 4, y + 7, StringView(&rank_str[0]), 1.0f);
+            bitmap_font.draw_string(renderer, x + 3, y + 3, StringView(&rank_str[0]), 16);
         }
 
         char8[2] suit_str = .();
         suit_str[0] = c.suit_logo_char();
         suit_str[1] = 0;
         SDL_SetRenderDrawColor(renderer, r, g, b, 255);
-        pixel_font.draw_pixel_string(renderer, x + w - 9, y + h - 10, StringView(&suit_str[0]), 1.0f);
+        float suit_w = bitmap_font.measure_string(StringView(&suit_str[0]), 16);
+        bitmap_font.draw_string(renderer, x + w - suit_w - 3, y + h - 19, StringView(&suit_str[0]), 16);
 
         draw_suit_icon_7x7(renderer, x + w / 2.0f - 10.5f, y + h / 2.0f - 8.0f, c.suit, 3.0f, r, g, b);
     }
 
     private void draw_key_label(SDL_Renderer* renderer, my_game game, float x, float y, StringView key, StringView label)
     {
-        float key_w = key.Length * 6.0f + 6;
-        SDL_FRect key_bg = .() { x = x, y = y, w = key_w, h = 10 };
+        float key_w = bitmap_font.measure_string(key, 16) + 6;
+        SDL_FRect key_bg = .() { x = x, y = y - 3, w = key_w, h = 22 };
         draw_utils.set_color(renderer, colors.KEY_BG);
         SDL_RenderFillRect(renderer, &key_bg);
         draw_utils.set_color(renderer, colors.KEY_BORDER);
         SDL_RenderRect(renderer, &key_bg);
 
         draw_utils.set_color(renderer, colors.KEY_TEXT);
-        pixel_font.draw_pixel_string(renderer, x + 3, y + 2, key, 1.0f);
+        bitmap_font.draw_string(renderer, x + 3, y, key, 16);
 
         draw_utils.set_color(renderer, colors.KEY_LABEL);
-        pixel_font.draw_pixel_string(renderer, x + key_w + 4, y + 2, label, 1.0f);
+        bitmap_font.draw_string(renderer, x + key_w + 4, y, label, 16);
     }
 }

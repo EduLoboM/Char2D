@@ -20,7 +20,7 @@ class bullet_system
 
         for (int i = 0; i < bullets.Count; i++)
         {
-            enemy_bullet* bullet = &bullets[i];
+            enemy_bullet bullet = bullets[i];
 
             if (!bullet.Update(delta_time, game))
             {
@@ -29,9 +29,9 @@ class bullet_system
                 continue;
             }
 
-            if (check_collision(bullet, game) && game.invincibility_timer <= 0.0f)
+            if (check_collision(&bullet, game) && game.invincibility_timer <= 0.0f)
             {
-                apply_damage(bullet, game);
+                apply_damage(&bullet, game);
 
                 if (bullet.type != .LaserActive)
                 {
@@ -41,13 +41,16 @@ class bullet_system
                 }
             }
 
-            check_graze(bullet, game);
+            check_graze(&bullet, game);
 
-            if (is_out_of_bounds(bullet, center_x, center_y))
+            if (is_out_of_bounds(&bullet, center_x, center_y))
             {
                 bullets.RemoveAt(i);
                 i--;
+                continue;
             }
+
+            bullets[i] = bullet;
         }
     }
 

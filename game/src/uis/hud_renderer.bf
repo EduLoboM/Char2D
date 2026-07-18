@@ -1,26 +1,40 @@
 using System;
+using System.Collections;
 using SDL3;
 
 namespace game;
 
 class hud_renderer
 {
-    public static void draw_character_bars(SDL_Renderer* renderer, character c, bool is_party, combat_state state, int actions_left, float game_time)
+    public static void draw_character_bars(SDL_Renderer* renderer, character c, bool is_party, combat_state state, int actions_left, int max_actions, float game_time)
     {
         if (is_party)
         {
             draw_utils.draw_bar(renderer, c.x, c.y - 12, c.width, c.health, c.max_health, colors.GREEN[0], colors.GREEN[1], colors.GREEN[2]);
             draw_utils.draw_bar(renderer, c.x, c.y - 20, c.width, c.tp, c.max_tp, colors.GOLD[0], colors.GOLD[1], colors.GOLD[2]);
 
-            if (state == .strategy)
+            if (state == .strategy || state == .selecting_minigame || state == .selecting_defense || state == .minigame)
             {
-                float total_dots_w = (actions_left - 1) * 8.0f + 4.0f;
-                float start_x = c.x + (c.width - total_dots_w) / 2.0f;
-                for (int i = 0; i < actions_left; i++)
+                float cx = c.x + c.width / 2.0f;
+                float h = 6.0f;
+                float w = 8.0f;
+                float bounce = (float)Math.Sin(game_time * 8.0f) * 2.0f;
+                float target_cy = c.y - 26.0f - h + bounce;
+
+                if (max_actions == 1)
                 {
-                    SDL_FRect dot = .() { x = start_x + i * 8.0f, y = c.y - 28, w = 4, h = 4 };
-                    draw_utils.set_color(renderer, colors.GREEN);
-                    SDL_RenderFillRect(renderer, &dot);
+                    bool active = actions_left > 0;
+                    draw_inverted_triangle(renderer, cx, target_cy, w, h, active, 46, 204, 113, 255);
+                }
+                else if (max_actions == 2)
+                {
+                    float offset = 6.0f;
+                    
+                    bool active1 = actions_left > 0;
+                    draw_inverted_triangle(renderer, cx - offset, target_cy, w, h, active1, 46, 204, 113, 255);
+
+                    bool active2 = actions_left > 1;
+                    draw_inverted_triangle(renderer, cx + offset, target_cy, w, h, active2, 46, 204, 113, 255);
                 }
             }
         }
@@ -37,6 +51,35 @@ class hud_renderer
             }
             draw_utils.draw_bar(renderer, c.x, c.y - 20, c.width, c.stagger, c.max_stagger, sr, sg, sb);
             draw_utils.draw_bar(renderer, c.x, c.y - 28, c.width, c.mercy_bar, c.max_mercy_bar, colors.BLUE[0], colors.BLUE[1], colors.BLUE[2]);
+
+            if (state == .dodging)
+            {
+                float cx = c.x + c.width / 2.0f;
+                float h = 6.0f;
+                float w = 8.0f;
+                float bounce = (float)Math.Sin(game_time * 8.0f) * 2.0f;
+                float target_cy = c.y - 34.0f - h + bounce;
+
+                draw_inverted_triangle(renderer, cx, target_cy, w, h, true, 231, 76, 60, 255);
+            }
+        }
+    }
+
+    private static void draw_inverted_triangle(SDL_Renderer* renderer, float cx, float cy, float w, float h, bool active, uint8 r, uint8 g, uint8 b, uint8 a)
+    {
+        List<Vector2> vertices = scope .();
+        vertices.Add(.(cx - w / 2.0f, cy));
+        vertices.Add(.(cx + w / 2.0f, cy));
+        vertices.Add(.(cx, cy + h));
+
+        if (active)
+        {
+            draw_utils.draw_filled_polygon(renderer, vertices, r, g, b, a);
+            draw_utils.draw_polygon_outline(renderer, vertices, (uint8)(r * 0.8f), (uint8)(g * 0.8f), (uint8)(b * 0.8f), a);
+        }
+        else
+        {
+            draw_utils.draw_polygon_outline(renderer, vertices, 140, 140, 155, 180);
         }
     }
 
@@ -58,11 +101,11 @@ class hud_renderer
             case .Mercy: action_str = "MERCY"; break;
         }
 
-        float txt_w = action_str.Length * 9.0f;
+        float txt_w = bitmap_font.measure_string(action_str, 16);
         float txt_x = 49.0f - (txt_w / 2.0f);
 
         draw_utils.set_color(renderer, colors.GOLD);
-        pixel_font.draw_pixel_string(renderer, txt_x, 341, action_str, 1.5f);
+        bitmap_font.draw_string(renderer, txt_x, 341 - 4, action_str, 16);
         SDL_SetRenderDrawBlendMode(renderer, SDL_BlendMode.SDL_BLENDMODE_NONE);
     }
 
@@ -95,9 +138,9 @@ class hud_renderer
         SDL_RenderRect(renderer, &mg_panel);
 
         StringView title = "SELECT ATTACK";
-        float title_w = title.Length * 9.0f;
+        float title_w = bitmap_font.measure_string(title, 16);
         draw_utils.set_color(renderer, colors.TEXT_DEFAULT);
-        pixel_font.draw_pixel_string(renderer, center_x - title_w / 2.0f, panel_y + 8, title, 1.5f);
+        bitmap_font.draw_string(renderer, center_x - title_w / 2.0f, panel_y + 8 - 4, title, 16);
 
         float dot_y = panel_y + 26;
         float dot_total_w = 5 * 4 + 4 * 8;
@@ -119,32 +162,32 @@ class hud_renderer
         }
 
         draw_utils.set_color(renderer, colors.GOLD);
-        pixel_font.draw_pixel_string(renderer, panel_x + 12, panel_y + 42, "<", 2.0f);
-        pixel_font.draw_pixel_string(renderer, panel_x + panel_w - 24, panel_y + 42, ">", 2.0f);
+        bitmap_font.draw_string(renderer, panel_x + 12, panel_y + 42 - 3, "<", 16);
+        bitmap_font.draw_string(renderer, panel_x + panel_w - 24, panel_y + 42 - 3, ">", 16);
 
         StringView name = selected.Name;
-        float name_w = name.Length * 12.0f;
+        float name_w = bitmap_font.measure_string(name, 16);
         draw_utils.set_color(renderer, colors.GOLD);
-        pixel_font.draw_pixel_string(renderer, center_x - name_w / 2.0f, panel_y + 38, name, 2.0f);
+        bitmap_font.draw_string(renderer, center_x - name_w / 2.0f, panel_y + 38 - 3, name, 16);
 
         StringView cost_str = selected.CostStr;
         bool can_afford = player_tp >= selected.TpCost;
-        float cost_w = cost_str.Length * 9.0f;
+        float cost_w = bitmap_font.measure_string(cost_str, 16);
         if (can_afford)
             draw_utils.set_color(renderer, colors.GREEN);
         else
             draw_utils.set_color(renderer, colors.RED);
-        pixel_font.draw_pixel_string(renderer, center_x - cost_w / 2.0f, panel_y + 60, cost_str, 1.5f);
+        bitmap_font.draw_string(renderer, center_x - cost_w / 2.0f, panel_y + 60 - 4, cost_str, 16);
 
         StringView diff_str = selected.Difficulty;
-        float diff_w = diff_str.Length * 9.0f;
+        float diff_w = bitmap_font.measure_string(diff_str, 16);
         draw_utils.set_color(renderer, colors.TEXT_MUTED);
-        pixel_font.draw_pixel_string(renderer, center_x - diff_w / 2.0f, panel_y + 76, diff_str, 1.5f);
+        bitmap_font.draw_string(renderer, center_x - diff_w / 2.0f, panel_y + 76 - 4, diff_str, 16);
 
         StringView mult_hint = selected.MultHint;
-        float mult_w = mult_hint.Length * 6.0f;
+        float mult_w = bitmap_font.measure_string(mult_hint, 16);
         draw_utils.set_color(renderer, colors.TEXT_DARK);
-        pixel_font.draw_pixel_string(renderer, center_x - mult_w / 2.0f, panel_y + 94, mult_hint, 1.0f);
+        bitmap_font.draw_string(renderer, center_x - mult_w / 2.0f, panel_y + 94 - 5, mult_hint, 16);
 
         SDL_SetRenderDrawBlendMode(renderer, SDL_BlendMode.SDL_BLENDMODE_NONE);
     }
@@ -165,9 +208,9 @@ class hud_renderer
         SDL_RenderRect(renderer, &def_panel);
 
         StringView title = "SELECT DEFENSE";
-        float title_w = title.Length * 9.0f;
+        float title_w = bitmap_font.measure_string(title, 16);
         draw_utils.set_color(renderer, colors.TEXT_DEFAULT);
-        pixel_font.draw_pixel_string(renderer, center_x - title_w / 2.0f, panel_y + 8, title, 1.5f);
+        bitmap_font.draw_string(renderer, center_x - title_w / 2.0f, panel_y + 8 - 4, title, 16);
 
         float dot_y = panel_y + 26;
         float dot_total_w = 3 * 4 + 2 * 8;
@@ -189,8 +232,8 @@ class hud_renderer
         }
 
         draw_utils.set_color(renderer, colors.GOLD);
-        pixel_font.draw_pixel_string(renderer, panel_x + 12, panel_y + 42, "<", 2.0f);
-        pixel_font.draw_pixel_string(renderer, panel_x + panel_w - 24, panel_y + 42, ">", 2.0f);
+        bitmap_font.draw_string(renderer, panel_x + 12, panel_y + 42 - 3, "<", 16);
+        bitmap_font.draw_string(renderer, panel_x + panel_w - 24, panel_y + 42 - 3, ">", 16);
 
         StringView name = "";
         StringView desc_str = "";
@@ -212,22 +255,22 @@ class hud_renderer
                 benefit_str = "RETURN 50% DMG ON HIT";
         }
 
-        float name_w = name.Length * 12.0f;
+        float name_w = bitmap_font.measure_string(name, 16);
         draw_utils.set_color(renderer, colors.GOLD);
-        pixel_font.draw_pixel_string(renderer, center_x - name_w / 2.0f, panel_y + 38, name, 2.0f);
+        bitmap_font.draw_string(renderer, center_x - name_w / 2.0f, panel_y + 38 - 3, name, 16);
 
         StringView tp_str = "16 TP";
-        float tp_w = tp_str.Length * 9.0f;
+        float tp_w = bitmap_font.measure_string(tp_str, 16);
         draw_utils.set_color(renderer, colors.GREEN);
-        pixel_font.draw_pixel_string(renderer, center_x - tp_w / 2.0f, panel_y + 60, tp_str, 1.5f);
+        bitmap_font.draw_string(renderer, center_x - tp_w / 2.0f, panel_y + 60 - 4, tp_str, 16);
 
-        float desc_w = desc_str.Length * 9.0f;
+        float desc_w = bitmap_font.measure_string(desc_str, 16);
         draw_utils.set_color(renderer, colors.TEXT_MUTED);
-        pixel_font.draw_pixel_string(renderer, center_x - desc_w / 2.0f, panel_y + 78, desc_str, 1.5f);
+        bitmap_font.draw_string(renderer, center_x - desc_w / 2.0f, panel_y + 78 - 4, desc_str, 16);
 
-        float benefit_w = benefit_str.Length * 6.0f;
+        float benefit_w = bitmap_font.measure_string(benefit_str, 16);
         draw_utils.set_color(renderer, colors.TEXT_DARK);
-        pixel_font.draw_pixel_string(renderer, center_x - benefit_w / 2.0f, panel_y + 94, benefit_str, 1.0f);
+        bitmap_font.draw_string(renderer, center_x - benefit_w / 2.0f, panel_y + 94 - 5, benefit_str, 16);
 
         SDL_SetRenderDrawBlendMode(renderer, SDL_BlendMode.SDL_BLENDMODE_NONE);
     }

@@ -16,13 +16,13 @@ static class layout
 
 
     public const float MINIGAME_PANEL_X = 200.0f;
-    public const float MINIGAME_PANEL_Y = 230.0f;
+    public const float MINIGAME_PANEL_Y = 215.0f;
     public const float MINIGAME_PANEL_W = 240.0f;
-    public const float MINIGAME_PANEL_H = 110.0f;
+    public const float MINIGAME_PANEL_H = 130.0f;
 
 
     public const float MG_SELECT_X = 170.0f;
-    public const float MG_SELECT_Y = 230.0f;
+    public const float MG_SELECT_Y = 215.0f;
     public const float MG_SELECT_W = 300.0f;
-    public const float MG_SELECT_H = 115.0f;
+    public const float MG_SELECT_H = 130.0f;
 }

@@ -51,7 +51,7 @@ class arena_renderer
             draw_utils.draw_circle_filled(renderer, cx, cy, radius, colors.GRAZE_PURPLE[0], colors.GRAZE_PURPLE[1], colors.GRAZE_PURPLE[2], graze_alpha);
         }
 
-        SDL_Texture* soul_tex = textures.get(renderer, "static/img/sprites/placeholder_soul.png");
+        SDL_Texture* soul_tex = textures.get(renderer, "game/ast/images/sprite/placeholder_soul.png");
         SDL_FRect soul_rect = .() { x = soul_x, y = soul_y, w = soul_size, h = soul_size };
         uint8 target_alpha = 255;
         if (game.invincibility_timer > 0.0f)

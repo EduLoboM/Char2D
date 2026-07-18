@@ -61,8 +61,8 @@ class my_game : i_game_loop
     {
         logger.setup("my_game has initialized!");
 
-        m_party.Add(new character("Hero", 100, 10, 5, 5, 78.0f, 150.0f, "static/img/sprites/character.png", 64, 64));
-        m_enemies.Add(new character("Demon", 100, 10, 5, 5, 498.0f, 150.0f, "static/img/sprites/polar_bear_2026.png", 64, 64));
+        m_party.Add(new character("Hero", 100, 10, 5, 5, 78.0f, 150.0f, "game/ast/images/sprite/character.png", 64, 64));
+        m_enemies.Add(new character("Demon", 100, 10, 5, 5, 498.0f, 150.0f, "game/ast/images/sprite/polar_bear_2026.png", 64, 64));
 
         m_soul.reset_position(m_arena);
         m_combat.initialize();
@@ -159,13 +159,13 @@ class my_game : i_game_loop
 
         for (var c in m_party)
         {
-            combat_renderer.draw_character_bars(renderer, c, true, m_combat.m_current_state, m_combat.player_actions_left, m_game_time);
+            combat_renderer.draw_character_bars(renderer, c, true, m_combat.m_current_state, m_combat.player_actions_left, m_combat.max_player_actions, m_game_time);
             combat_renderer.draw_character_sprite(renderer, c, m_textures);
         }
 
         for (var c in m_enemies)
         {
-            combat_renderer.draw_character_bars(renderer, c, false, m_combat.m_current_state, m_combat.player_actions_left, m_game_time);
+            combat_renderer.draw_character_bars(renderer, c, false, m_combat.m_current_state, m_combat.player_actions_left, 1, m_game_time);
             combat_renderer.draw_character_sprite(renderer, c, m_textures);
         }
 

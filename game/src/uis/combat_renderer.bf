@@ -5,9 +5,9 @@ namespace game;
 
 class combat_renderer
 {
-    public static void draw_character_bars(SDL_Renderer* renderer, character c, bool is_party, combat_state state, int actions_left, float game_time)
+    public static void draw_character_bars(SDL_Renderer* renderer, character c, bool is_party, combat_state state, int actions_left, int max_actions, float game_time)
     {
-        hud_renderer.draw_character_bars(renderer, c, is_party, state, actions_left, game_time);
+        hud_renderer.draw_character_bars(renderer, c, is_party, state, actions_left, max_actions, game_time);
     }
 
     public static void draw_character_sprite(SDL_Renderer* renderer, character c, texture_cache textures)

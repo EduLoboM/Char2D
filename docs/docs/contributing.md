@@ -14,8 +14,8 @@ To ensure a smooth collaboration, please follow these guidelines when contributi
 - **Documentation:** Always document public APIs and document complex logic blocks.
 
 ### Asset & Resource Integration
-- **Pixel Art:** Align all visual assets to a **32x32 pixel grid** for characters and at least **16x16 pixel grid** for bullets. Export files in **.png** format with transparent backgrounds.
-- **Audio & Soundtracks:** Background music and sound effects must be compressed as **.ogg** files. Ensure loop metadata tags are included for BGM.
+- **Pixel Art:** Align all visual assets to an exact pixel size, don't scale any asset to avoid mixels, for example most characters should fit in a 64x64 canvas and projectiles in a 32x32 canvas. Export files in **.png** format with transparent backgrounds.
+- **Audio & Soundtracks:** Background music must be compressed as **.qoa** files and sound effects must be compressed as **.wav** files. Ensure loop metadata tags are included for BGM.
 - **Asset Registry:** When adding new asset files, make sure to update the **[Asset Registry](./artifacts/index.md)** document.
 
 ### Git Workflow & Pull Requests

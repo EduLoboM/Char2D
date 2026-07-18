@@ -60,7 +60,7 @@ class bitmap_font
             int index = MAP.IndexOf(c);
             if (index == -1)
             {
-                index = 0; // Default to space
+                index = 0;
             }
             
             int col = index % 20;
@@ -90,7 +90,6 @@ class bitmap_font
                 SDL_RenderTexture(renderer, tex, &srcRect, &dstRect);
             }
             
-            // Advance cursor with 2 native pixels of tracking/spacing
             cur_x += (src_w + 2.0f) * scale;
         }
     }
@@ -100,7 +99,6 @@ class bitmap_font
         SDL_Texture* tex = get_texture(renderer, font_name);
         if (tex == null) return;
         
-        // Remove color mod from texture itself so geometry colors work
         SDL_SetTextureColorMod(tex, 255, 255, 255);
         SDL_SetTextureAlphaMod(tex, 255);
         
@@ -124,22 +122,18 @@ class bitmap_font
             if (src_w > 0)
             {
                 SDL_Vertex[4] vertices = .();
-                // Top left
                 vertices[0].position = .() { x = cur_x, y = y };
                 vertices[0].color = top_color;
                 vertices[0].tex_coord = .() { x = src_x / 640.0f, y = src_y / 160.0f };
                 
-                // Top right
                 vertices[1].position = .() { x = cur_x + src_w * scale, y = y };
                 vertices[1].color = top_color;
                 vertices[1].tex_coord = .() { x = (src_x + src_w) / 640.0f, y = src_y / 160.0f };
                 
-                // Bottom right
                 vertices[2].position = .() { x = cur_x + src_w * scale, y = y + size };
                 vertices[2].color = bottom_color;
                 vertices[2].tex_coord = .() { x = (src_x + src_w) / 640.0f, y = (src_y + src_h) / 160.0f };
                 
-                // Bottom left
                 vertices[3].position = .() { x = cur_x, y = y + size };
                 vertices[3].color = bottom_color;
                 vertices[3].tex_coord = .() { x = src_x / 640.0f, y = (src_y + src_h) / 160.0f };

@@ -266,7 +266,7 @@ class combat_manager
         BulletPatternType next_pattern = .Waves;
         while (true)
         {
-            next_pattern = (BulletPatternType)(game_rand.next() % 7);
+            next_pattern = (BulletPatternType)(game_rand.next() % 11);
             if (next_pattern != m_last_pattern)
                 break;
         }

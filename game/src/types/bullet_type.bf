@@ -11,12 +11,17 @@ enum BulletType
     case LaserTelegraph;
     case LaserActive;
     case VortexCenter;
+    case BoneVertical;
+    case DiamondOrbiter;
+    case DiamondShot;
+    case ZigzagWall;
+    case StarburstShard;
 
     public bool IsCollidable
     {
         get
         {
-            return this != .LaserTelegraph && this != .Explosion && this != .VortexCenter;
+            return this != .LaserTelegraph && this != .Explosion && this != .VortexCenter && this != .DiamondOrbiter;
         }
     }
 
@@ -24,7 +29,7 @@ enum BulletType
     {
         get
         {
-            return this != .LaserTelegraph && this != .LaserActive && this != .VortexCenter && this != .Explosion;
+            return this != .LaserTelegraph && this != .LaserActive && this != .VortexCenter && this != .Explosion && this != .DiamondOrbiter;
         }
     }
 }

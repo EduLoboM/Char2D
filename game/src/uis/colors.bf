@@ -28,4 +28,9 @@ static class colors
     public const uint8[4] KEY_BORDER = .(100, 100, 115, 255);
     public const uint8[4] KEY_TEXT = .(220, 220, 230, 255);
     public const uint8[4] KEY_LABEL = .(160, 160, 170, 255);
+
+    public const uint8[4] CYAN = .(0, 220, 235, 255);
+    public const uint8[4] BONE_WHITE = .(225, 225, 215, 255);
+    public const uint8[4] MAGENTA = .(230, 50, 180, 255);
+    public const uint8[4] LIME = .(130, 255, 50, 255);
 }

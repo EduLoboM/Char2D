@@ -88,6 +88,10 @@ class arena_renderer
                 draw_vortex(renderer, ref bullet, game_time);
             case .Explosion:
                 draw_explosion(renderer, ref bullet);
+            case .DiamondOrbiter:
+                draw_diamond_orbiter(renderer, ref bullet, game_time);
+            case .DiamondShot:
+                draw_diamond_shot(renderer, ref bullet);
             default:
                 draw_standard_bullet(renderer, ref bullet);
         }
@@ -188,17 +192,61 @@ class arena_renderer
         SDL_RenderFillRect(renderer, &bullet_rect);
     }
 
+    private static void draw_diamond_orbiter(SDL_Renderer* renderer, ref enemy_bullet bullet, float game_time)
+    {
+        float bcx = bullet.x + bullet.size / 2.0f;
+        float bcy = bullet.y + bullet.size / 2.0f;
+        float half = bullet.size / 2.0f;
+
+        SDL_SetRenderDrawBlendMode(renderer, SDL_BlendMode.SDL_BLENDMODE_BLEND);
+
+        float pulse = 1.0f + (float)Math.Sin(game_time * 6.0f + bullet.extra_x * 3.0f) * 0.15f;
+        float glow_r = half * 1.6f * pulse;
+        draw_utils.draw_circle_filled(renderer, bcx, bcy, glow_r, colors.CYAN[0], colors.CYAN[1], colors.CYAN[2], 50);
+
+        draw_utils.set_color(renderer, colors.CYAN);
+        SDL_RenderLine(renderer, bcx, bcy - half, bcx + half, bcy);
+        SDL_RenderLine(renderer, bcx + half, bcy, bcx, bcy + half);
+        SDL_RenderLine(renderer, bcx, bcy + half, bcx - half, bcy);
+        SDL_RenderLine(renderer, bcx - half, bcy, bcx, bcy - half);
+
+        float inner = half * 0.5f;
+        SDL_SetRenderDrawColor(renderer, colors.CYAN[0], colors.CYAN[1], colors.CYAN[2], 120);
+        SDL_RenderLine(renderer, bcx, bcy - inner, bcx + inner, bcy);
+        SDL_RenderLine(renderer, bcx + inner, bcy, bcx, bcy + inner);
+        SDL_RenderLine(renderer, bcx, bcy + inner, bcx - inner, bcy);
+        SDL_RenderLine(renderer, bcx - inner, bcy, bcx, bcy - inner);
+
+        SDL_SetRenderDrawBlendMode(renderer, SDL_BlendMode.SDL_BLENDMODE_NONE);
+    }
+
+    private static void draw_diamond_shot(SDL_Renderer* renderer, ref enemy_bullet bullet)
+    {
+        float bcx = bullet.x + bullet.size / 2.0f;
+        float bcy = bullet.y + bullet.size / 2.0f;
+        float half = bullet.size / 2.0f;
+
+        draw_utils.set_color(renderer, colors.CYAN);
+        SDL_RenderLine(renderer, bcx, bcy - half, bcx + half, bcy);
+        SDL_RenderLine(renderer, bcx + half, bcy, bcx, bcy + half);
+        SDL_RenderLine(renderer, bcx, bcy + half, bcx - half, bcy);
+        SDL_RenderLine(renderer, bcx - half, bcy, bcx, bcy - half);
+    }
+
     private static void draw_standard_bullet(SDL_Renderer* renderer, ref enemy_bullet bullet)
     {
         SDL_FRect bullet_rect = .() { x = bullet.x, y = bullet.y, w = bullet.size, h = bullet.size };
 
         switch (bullet.type)
         {
-            case .SineWave:      draw_utils.set_color(renderer, colors.BLUE);
-            case .SineWaveDNA:   draw_utils.set_color(renderer, colors.PURPLE);
-            case .Fragmentation: draw_utils.set_color(renderer, colors.ORANGE);
+            case .SineWave:           draw_utils.set_color(renderer, colors.BLUE);
+            case .SineWaveDNA:        draw_utils.set_color(renderer, colors.PURPLE);
+            case .Fragmentation:      draw_utils.set_color(renderer, colors.ORANGE);
             case .FragmentationSmall: draw_utils.set_color(renderer, colors.GOLD);
-            default:             SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
+            case .BoneVertical:       draw_utils.set_color(renderer, colors.BONE_WHITE);
+            case .ZigzagWall:         draw_utils.set_color(renderer, colors.MAGENTA);
+            case .StarburstShard:     draw_utils.set_color(renderer, colors.LIME);
+            default:                  SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
         }
 
         SDL_RenderFillRect(renderer, &bullet_rect);

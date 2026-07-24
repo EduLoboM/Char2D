@@ -50,6 +50,8 @@ struct enemy_bullet {
             case .VortexCenter:
 
                 break;
+            case .DiamondOrbiter:
+                update_diamond_orbiter(delta_time, game);
             default:
                 update_default(delta_time);
         }
@@ -116,6 +118,18 @@ struct enemy_bullet {
     {
         timer += delta_time;
         return timer < 0.2f;
+    }
+
+    private void update_diamond_orbiter(float delta_time, my_game game) mut
+    {
+        timer += delta_time;
+        extra_x += 2.2f * delta_time;
+
+        float cx = game.arena_x + game.arena_w / 2.0f;
+        float cy = game.arena_y + game.arena_h / 2.0f;
+        float orbit_radius = extra_y;
+        x = cx + (float)Math.Cos(extra_x) * orbit_radius - size / 2.0f;
+        y = cy + (float)Math.Sin(extra_x) * orbit_radius - size / 2.0f;
     }
 
     private void update_default(float delta_time) mut
